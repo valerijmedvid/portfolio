@@ -40,7 +40,7 @@ export default function App() {
         </p>
       </article>
 
-      <div className='mt-10 flex flex-row justify-center'>
+      <div className='mt-10 flex flex-row flex-wrap justify-center'>
         {socialMediaLinks.map((link, index) => {
           return (
             <a href={link.link} key={index}>
