@@ -1,9 +1,20 @@
 import Logo from './assets/images/logo.svg'
 import Vili from './assets/images/vili.png'
 
+interface ISocialMedia {
+  name: string
+  link: string
+}
+
 export default function App() {
   const now = new Date()
   const age = now.getFullYear() - 1990
+
+  const socialMediaLinks: ISocialMedia[] = [
+    { name: 'GitHub', link: 'https://github.com/valerijmedvid' },
+    { name: 'LinkedIn', link: 'https://www.linkedin.com/in/valerijmedvid/' },
+    { name: 'Twitter', link: 'https://twitter.com/valerijmedvid' },
+  ]
 
   return (
     <div className='container h-screen mx-auto p-4'>
@@ -11,7 +22,7 @@ export default function App() {
         <img
           src={Logo}
           alt='logo'
-          style={{ width: '3em', height: '3em', animation: 'tilt-shaking 1s linear infinite' }}
+          style={{ width: '3em', height: '3em', animation: 'tilt-shaking 5s linear infinite' }}
         />
       </header>
       <article className='mt-5 flex flex-col justify-center items-center'>
@@ -28,6 +39,18 @@ export default function App() {
           <strong>riding my motor bike</strong>.
         </p>
       </article>
+
+      <div className='mt-10 flex flex-row justify-center'>
+        {socialMediaLinks.map((link, index) => {
+          return (
+            <a href={link.link} key={index}>
+              <button className='bg-transparent hover:bg-sky-400 text-gray-700 font-semibold hover:text-white py-4 px-8 border border-gray-500 hover:border-transparent rounded m-3'>
+                {link.name}
+              </button>
+            </a>
+          )
+        })}
+      </div>
     </div>
   )
 }
