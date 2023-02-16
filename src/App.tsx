@@ -14,8 +14,8 @@ export default function App() {
           style={{ width: '3em', height: '3em', animation: 'tilt-shaking 1s linear infinite' }}
         />
       </header>
-      <article className='mt-10 flex flex-col justify-center items-center'>
-        <img src={Vili} alt='portrait' style={{ width: '10em', height: '10em' }} />
+      <article className='mt-5 flex flex-col justify-center items-center'>
+        <img src={Vili} alt='portrait' className='mb-7' style={{ width: '10em', height: '10em' }} />
 
         <h1 className='font-sans text-xl font-bold'>Valerij Medviď</h1>
 
