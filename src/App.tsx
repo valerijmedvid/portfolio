@@ -34,7 +34,7 @@ export default function App() {
           I&apos;m {age} years old. I&apos;m interested in <strong>IT</strong>,{' '}
           <strong>application development</strong> and <strong>production deployment</strong>. I
           enjoy learning new things and improving my skills. My hobbies include creating{' '}
-          <strong>IoT</strong> based gadgets and smart homes. I like to spend my free time doing
+          <strong>IoT</strong> based gadgets and smart homes. I like to spend my free time doing{' '}
           <strong>sports</strong>, <strong>going on trips</strong> or{' '}
           <strong>riding my motor bike</strong>.
         </p>
