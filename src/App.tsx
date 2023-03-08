@@ -17,20 +17,16 @@ export default function App() {
   ]
 
   return (
-    <div className='container h-screen mx-auto p-4'>
+    <div className='max-w-5xl h-screen mx-auto p-4'>
       <header>
-        <img
-          src={Logo}
-          alt='logo'
-          style={{ width: '3em', height: '3em', animation: 'tilt-shaking 5s linear infinite' }}
-        />
+        <img src={Logo} alt='logo' style={{ width: '18em' }} />
       </header>
       <article className='mt-5 flex flex-col justify-center items-center'>
-        <img src={Vili} alt='portrait' className='mb-7' style={{ width: '10em', height: '10em' }} />
+        <img src={Vili} alt='portrait' className='mb-7' style={{ width: '11em', height: '11em' }} />
 
         <h1 className='font-sans text-xl font-bold'>Valerij Medviď</h1>
 
-        <p className='mt-3 ml-1 font-mono text-md font-medium'>
+        <p className='mt-3 ml-1 font-mono text-md font-medium text-center'>
           I&apos;m {age} years old. I&apos;m interested in <strong>IT</strong>,{' '}
           <strong>application development</strong> and <strong>production deployment</strong>. I
           enjoy learning new things and improving my skills. My hobbies include creating{' '}
