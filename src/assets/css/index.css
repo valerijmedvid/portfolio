@@ -5,3 +5,11 @@
 body {
   height: 100vh;
 }
+
+.accent {
+  color: #00c6ff;
+}
+
+.accent-hover:hover {
+  color: #018bb1;
+}
