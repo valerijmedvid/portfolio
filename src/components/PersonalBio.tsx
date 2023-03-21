@@ -1,4 +1,4 @@
-import Vili from '../assets/images/vili.png'
+import Vili from '../assets/images/vili.webp'
 
 export default function PersonalBio() {
   const now = new Date()
