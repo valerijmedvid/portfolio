@@ -6,46 +6,7 @@
       >
         <HeroHeader />
 
-        <!-- META STRIP -->
-        <div class="px-6 pb-6 print:px-0">
-          <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <div
-              class="rounded-xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-4"
-            >
-              <p class="text-xs uppercase tracking-wide text-neutral-500">Core Skills</p>
-              <div class="mt-2 flex flex-wrap gap-2">
-                <Tag>Vue 3</Tag>
-                <Tag>TypeScript</Tag>
-                <Tag>Nuxt</Tag>
-                <Tag>Tailwind</Tag>
-                <Tag>Pinia</Tag>
-              </div>
-            </div>
-            <div
-              class="rounded-xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-4"
-            >
-              <p class="text-xs uppercase tracking-wide text-neutral-500">Toolbox</p>
-              <div class="mt-2 flex flex-wrap gap-2">
-                <Tag>Supabase</Tag>
-                <Tag>Node</Tag>
-                <Tag>Docker</Tag>
-                <Tag>Git</Tag>
-                <Tag>CI/CD</Tag>
-              </div>
-            </div>
-            <div
-              class="rounded-xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-4"
-            >
-              <p class="text-xs uppercase tracking-wide text-neutral-500">Focus</p>
-              <div class="mt-2 flex flex-wrap gap-2">
-                <Tag>Clean UI</Tag>
-                <Tag>DX</Tag>
-                <Tag>Performance</Tag>
-                <Tag>Testing</Tag>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SkillList :skillList />
 
         <!-- EXPERIENCE -->
         <section class="px-6 pb-6 print:px-0">
@@ -100,5 +61,21 @@
 
 <script setup lang="ts">
 import HeroHeader from './components/HeroHeader.vue'
+import SkillList from './components/SkillList.vue'
 import TimelineItem from './components/TimelineItem.vue'
+
+const skillList = [
+  {
+    categoryName: 'Core Skills',
+    skills: ['Vue.js', 'TypeScript', 'Nuxt', 'Tailwind', 'Pinia'],
+  },
+  {
+    categoryName: 'Toolbox',
+    skills: ['SQL', 'Supabase', 'Node', 'Docker', 'Git', 'CI/CD', 'Python'],
+  },
+  {
+    categoryName: 'Focus',
+    skills: ['Clean Code', 'UX', 'DX', 'Performance', 'Testing'],
+  },
+]
 </script>
