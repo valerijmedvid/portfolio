@@ -1,0 +1,36 @@
+{
+  "name": "valerijmedvid-cv",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --fix",
+    "format": "prettier --write \"**/*.{js,ts,tsx,vue,json,css,scss,md}\""
+  },
+  "dependencies": {
+    "lucide-vue-next": "^0.552.0",
+    "or": "^0.2.0",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.39.1",
+    "eslint-plugin-vue": "^10.5.1",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "@tailwindcss/postcss": "^4.1.16",
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.0",
+    "vue-eslint-parser": "^10.2.0",
+    "vue-tsc": "^3.1.3"
+  }
+}
