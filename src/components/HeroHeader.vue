@@ -1,8 +1,8 @@
 <template>
+  <!-- Hero section -->
   <header
-    class="flex flex-col items-center gap-4 px-6 pt-8 pb-6 md:flex-row md:items-end sm:justify-between print:px-0"
+    class="flex flex-col items-center gap-4 px-6 pt-8 pb-6 md:flex-row md:items-end sm:justify-between print:px-0 print:items-start"
   >
-    <!-- Hero section -->
     <div
       class="flex flex-col md:flex-row items-center gap-3 print:flex-row print:items-center print:gap-3"
     >
