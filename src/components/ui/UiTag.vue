@@ -1,6 +1,6 @@
 <template>
   <span
-    class="group inline-flex items-center gap-0.5 px-1 py-1 text-xs cursor-pointer transition-colors duration-200"
+    class="group inline-flex items-center gap-0.5 px-1 py-0.5 text-xs cursor-pointer transition-colors duration-200"
   >
     <UiIcon
       name="hash"
