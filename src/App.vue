@@ -20,18 +20,27 @@ import SkillList from './components/SkillList.vue'
 import ExperienceHistory from './components/ExperienceHistory.vue'
 
 const skillList = [
-  {
-    categoryName: 'Core Skills',
-    skills: ['Vue.js', 'TypeScript', 'Nuxt', 'Tailwind', 'Pinia'],
-  },
-  {
-    categoryName: 'Toolbox',
-    skills: ['SQL', 'Supabase', 'Node', 'Docker', 'Git', 'CI/CD', 'Python'],
-  },
-  {
-    categoryName: 'Focus',
-    skills: ['Clean Code', 'UX', 'DX', 'Performance', 'Testing', 'Comunication'],
-  },
+  'Vue.js',
+  'TypeScript',
+  'Nuxt',
+  'Tailwind',
+  'REST',
+  'Pinia',
+  'SQL',
+  'Problem Solving',
+  'Agile',
+  'Supabase',
+  'Node',
+  'Docker',
+  'Git',
+  'CI/CD',
+  'Console.log Debugging Master',
+  'Python',
+  'Clean Code',
+  'UX / DX',
+  'Testing',
+  'Comunication',
+  'Coffee-Driven Development ☕',
 ]
 
 const experienceList = [
@@ -60,7 +69,7 @@ const experienceList = [
     company: 'Avast',
     period: '2019 – 2022',
     bullets: [
-      'Internal dashboards (Vue, Python, SQL)',
+      'Internal dashboards (Vue, Python, SQL, RabbitMQ, gRPC)',
       'Dockerized environments, automated deployments',
     ],
   },
