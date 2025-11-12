@@ -1,6 +1,6 @@
 # 👨‍💻 Valér Medvid - Portfolio
 
-[![Deploy](https://github.com/valerijmedvid/portfolio/actions/workflows/main.yaml/badge.svg)](https://github.com/valerijmedvid/portfolio/actions/workflows/main.yaml)
+[![Deploy](https://github.com/valerijmedvid/portfolio/actions/workflows/main.yaml/badge.svg)](https://github.com/valerijmedvid/portfolio/actions/workflows/main.yaml/badge.svg)
 
 Osobní portfolio - moderní, responzivní a rychlé.
 
