@@ -1,4 +1,4 @@
-# 👨‍💻 Valér Medvid - Portfolio
+# 👨‍💻 Valerij Medviď - Portfolio
 
 [![Deploy](https://github.com/valerijmedvid/portfolio/actions/workflows/main.yaml/badge.svg)](https://github.com/valerijmedvid/portfolio/actions/workflows/main.yaml/badge.svg)
 
