@@ -45,9 +45,19 @@ const skillList = [
 
 const experienceList = [
   {
+    title: 'Senior Frontend Developer',
+    company: 'LutherOne',
+    period: '2026 – now',
+    bullets: [
+      'Vue + TypeScript B2B web apps',
+      'architecture decisions, code reviews',
+      'techdept reduction, cross-team collaboration',
+    ],
+  },
+  {
     title: 'Frontend Developer',
     company: 'Komerční banka',
-    period: '2024 – now',
+    period: '2024 – 2025',
     bullets: [
       'Vue 3 + TypeScript internal web apps',
       'API integration, form-heavy UIs, access control',
