@@ -1,6 +1,6 @@
 <template>
   <main
-    class="min-h-screen bg-gradient-to-b from-neutral-50 to-white text-neutral-900 print:bg-white print:text-black"
+    class="min-h-screen bg-gradient-to-b from-neutral-50 to-white text-neutral-900 dark:from-neutral-950 dark:to-neutral-900 dark:text-neutral-100 print:bg-white print:text-black"
   >
     <div class="mx-auto max-w-5xl px-6 py-10 print:p-0 print:max-w-none">
       <section
@@ -21,6 +21,9 @@ import HeroHeader from './components/HeroHeader.vue'
 import SkillList from './components/SkillList.vue'
 import ExperienceHistory from './components/ExperienceHistory.vue'
 import type { TExperience } from './components/ui/UiTimelineItem.vue'
+import { useTheme } from './composables/useTheme'
+
+useTheme()
 
 const skillList = [
   'Vue.js',

@@ -5,14 +5,17 @@
     :target="props.href ? '_blank' : undefined"
     :rel="props.href ? 'noopener noreferrer' : undefined"
     :type="props.href ? undefined : 'button'"
-    :class="{
-      'bg-neutral-900 text-white hover:bg-neutral-800': props.isDark,
-      'bg-white text-neutral-900 hover:bg-neutral-50': !props.isDark,
-    }"
-    class="inline-flex items-center gap-2 rounded-xl border border-black/10 px-3 py-2 text-sm shadow-sm transition-colors duration-200 cursor-pointer hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/40"
+    :aria-label="props.label || props.ariaLabel"
+    :class="[
+      props.isDark
+        ? 'bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100'
+        : 'bg-white text-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800',
+      props.label ? 'px-3 py-2' : 'p-2',
+    ]"
+    class="inline-flex items-center gap-2 rounded-xl border border-black/10 dark:border-white/10 text-sm shadow-sm transition-colors duration-200 cursor-pointer hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/40 dark:focus-visible:ring-white/40"
   >
     <UiIcon v-if="props.icon" :name="props.icon" />
-    {{ props.label }}
+    <span v-if="props.label">{{ props.label }}</span>
   </component>
 </template>
 
@@ -21,15 +24,18 @@ import UiIcon from './UiIcon.vue'
 
 const props = withDefaults(
   defineProps<{
-    label: string
+    label?: string
     icon?: string
     href?: string
     isDark?: boolean
+    ariaLabel?: string
   }>(),
   {
+    label: '',
     icon: undefined,
     href: undefined,
     isDark: false,
+    ariaLabel: undefined,
   },
 )
 </script>

@@ -13,6 +13,8 @@ import {
   Calendar,
   AlertCircle,
   Hash,
+  Sun,
+  Moon,
 } from 'lucide-vue-next'
 
 const props = withDefaults(
@@ -33,6 +35,8 @@ const iconMap: Record<string, Component> = {
   briefcase: Briefcase,
   calendar: Calendar,
   hash: Hash,
+  sun: Sun,
+  moon: Moon,
 }
 
 const iconComponent = computed((): Component => {

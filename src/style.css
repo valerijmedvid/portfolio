@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Work Sans', sans-serif;
 
@@ -36,7 +38,7 @@ body {
 
 @media print {
   @page {
-    margin: 12mm 14mm;
+    margin: 8mm 10mm;
     size: A4;
   }
 

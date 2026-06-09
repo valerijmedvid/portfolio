@@ -57,6 +57,11 @@
 
     <!-- Links section -->
     <div class="flex flex-wrap items-center justify-center gap-2 md:justify-end print:hidden">
+      <UiButton
+        :icon="isDark ? 'sun' : 'moon'"
+        :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+        @click="toggle"
+      />
       <UiButton label="Github" icon="github" href="https://github.com/valerijmedvid" />
       <UiButton
         label="LinkedIn"
@@ -82,6 +87,9 @@
 import ProfilePhoto from '/src/assets/vili.webp'
 import UiButton from './ui/UiButton.vue'
 import UiIcon from './ui/UiIcon.vue'
+import { useTheme } from '@/composables/useTheme'
+
+const { isDark, toggle } = useTheme()
 
 const printPage = (): void => {
   if (typeof window !== 'undefined') {
