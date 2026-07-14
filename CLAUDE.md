@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio / CV — a single-page Vue 3 + TypeScript + Vite app styled with Tailwind v4. Deployed via GitHub Actions to an FTP host on push to `main` (`.github/workflows/main.yaml`).
 
-Despite what `README.md` says, **there is no Pinia, no router, and no state management** — all content (skills, experience) is hardcoded as inline arrays in `src/App.vue:22`. Adding a new role or skill means editing those arrays.
+**There is no Pinia, no router, and no state management** — all content (skills, experience) is hardcoded as inline arrays in `src/App.vue:28`. Adding a new role or skill means editing those arrays.
 
 ## Commands
 
@@ -26,18 +26,26 @@ There are no tests in this repo.
 src/
   App.vue                       data lives here (skillList, experienceList) and is passed down as props
   components/
-    HeroHeader.vue              header + summary; owns the Export-PDF (window.print) button
+    HeroHeader.vue              header + summary; owns the dark-mode toggle and Export-PDF (window.print) button
     SkillList.vue               renders skill tags
     ExperienceHistory.vue       renders the experience timeline
     ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiTimelineItem)
+  composables/
+    useTheme.ts                 dark-mode state (module-level singleton, see below)
+  utils/
+    period.ts                   `YearMonth` type + date-range formatting for the timeline
   style.css                     `@import 'tailwindcss'` + `@theme` block (Tailwind v4 syntax)
 ```
 
-Data flow is one-way and trivial: `App.vue` → feature components (`Hero`, `Skill`, `Experience`) → `ui/` primitives. There is no shared store, no composables, no `src/lib`. If you find yourself reaching for one, the project is small enough that you almost certainly don't need it.
+Data flow is one-way and trivial: `App.vue` → feature components (`Hero`, `Skill`, `Experience`) → `ui/` primitives. There is no shared store; the only composable is `useTheme` and the only util is `period.ts`. The project is small enough that you almost certainly don't need to add more.
 
 ### Icons
 
-`UiIcon` wraps `lucide-vue-next` behind a string-name map (`src/components/ui/UiIcon.vue:28`). To use a new icon, **import it and add it to `iconMap`** — unknown names silently fall back to `AlertCircle`. Component templates reference icons by lowercase name (e.g. `name="github"`), not by component reference.
+`UiIcon` wraps `lucide-vue-next` behind a string-name map (`src/components/ui/UiIcon.vue:30`). To use a new icon, **import it and add it to `iconMap`** — unknown names silently fall back to `AlertCircle`. Component templates reference icons by lowercase name (e.g. `name="github"`), not by component reference.
+
+### Dark mode
+
+Class-based, not media-query-based: `src/style.css` declares `@custom-variant dark (&:where(.dark, .dark *))`, and `useTheme` (`src/composables/useTheme.ts`) toggles the `dark` class on `<html>`. State is a module-level singleton (mode persisted to `localStorage` under `theme`, defaults to system preference). `HeroHeader` renders the toggle. Print always forces light mode via `beforeprint`/`afterprint` listeners — don't rely on `dark:` styles in print output.
 
 ### Print / Export PDF
 
@@ -65,4 +73,4 @@ Prettier: no semicolons, single quotes, trailing commas, 100-col width, LF line 
 
 ## Styling
 
-Tailwind v4 — configured via `@tailwindcss/postcss` and the `@theme` block in `src/style.css`. There is a `tailwind.config.js` but core theme tokens (e.g. `--font-sans: 'Work Sans'`) live in CSS, not JS. Dark-mode classes (`dark:*`) appear throughout, but there's no toggle wired up — they react to OS-level preference.
+Tailwind v4 — configured via `@tailwindcss/postcss` and the `@theme` block in `src/style.css`. There is a `tailwind.config.js` but core theme tokens (e.g. `--font-sans: 'Work Sans'`) live in CSS, not JS. Dark-mode classes (`dark:*`) appear throughout and are driven by the `.dark` class on `<html>` (see Dark mode above).

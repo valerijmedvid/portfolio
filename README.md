@@ -6,21 +6,23 @@ Osobní portfolio - moderní, responzivní a rychlé.
 
 ## 🎯 O projektu
 
-Moje portfolio postavené na Vue 3 + TypeScript s Tailwind CSS. Prezentuje mé dovednosti, zkušenosti a projekty.
+Moje portfolio postavené na Vue 3 + TypeScript s Tailwind CSS. Prezentuje mé dovednosti, zkušenosti a projekty. Podporuje dark mode (s přepínačem i podle systému) a export do PDF přes tisk.
 
 ## 🛠️ Tech Stack
 
 - **Framework:** Vue 3 + TypeScript
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS v4
 - **Build Tool:** Vite
-- **State Management:** Pinia
-- **Deployment:** FTP
+- **Ikony:** lucide-vue-next
+- **Deployment:** FTP přes GitHub Actions
 
 ## 📋 Obsah
 
-- **HeroHeader** - Úvodní sekce s kontaktem
+- **HeroHeader** - Úvodní sekce s kontaktem, přepínačem dark mode a tlačítkem Export PDF
 - **SkillList** - Přehled dovedností s tagy
-- **ExperienceHistory** - Pracovní zkušenosti a projekty
+- **ExperienceHistory** - Pracovní zkušenosti a projekty (timeline s automatickým výpočtem délky období)
+
+Veškerá data (skills, experience) jsou definována přímo v `src/App.vue` — žádný store ani API.
 
 ## 🚀 Spuštění
 
@@ -31,20 +33,23 @@ npm install
 # Vývoj se live reload
 npm run dev
 
-# Build pro produkci
+# Build pro produkci (type-check + build)
 npm run build
 
 # Preview build
 npm run preview
 ```
 
-## 📝 ESLint a kód
+## 📝 Kvalita kódu
 
 ```bash
-# Spuštění lintingu
+# ESLint s auto-fix
 npm run lint
+
+# Prettier formátování
+npm run format
 ```
 
 ## 🌐 Live
 
-Portfolio je deployováno na FTP serveru přes GitHub Actions CI/CD.
+Portfolio je deployováno na FTP serveru přes GitHub Actions CI/CD při push do `main`.
