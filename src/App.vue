@@ -6,7 +6,7 @@
       <section
         class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-neutral-950/60 backdrop-blur shadow-sm print:bg-white print:shadow-none print:border-0 print:rounded-none print:backdrop-blur-none"
       >
-        <HeroHeader />
+        <HeroHeader :years-in-it="yearsInIt" />
 
         <SkillList :skillList />
 
@@ -18,35 +18,36 @@
 
 <script setup lang="ts">
 import HeroHeader from './components/HeroHeader.vue'
-import SkillList from './components/SkillList.vue'
+import SkillList, { type TSkill } from './components/SkillList.vue'
 import ExperienceHistory from './components/ExperienceHistory.vue'
 import type { TExperience } from './components/ui/UiTimelineItem.vue'
 import { useTheme } from './composables/useTheme'
+import { earliest, yearsSince } from './utils/period'
 
 useTheme()
 
-const skillList = [
-  'Vue.js',
-  'TypeScript',
-  'Nuxt',
-  'Tailwind',
-  'REST',
-  'Pinia',
-  'SQL',
-  'Problem Solving',
-  'Agile',
-  'Supabase',
-  'Node',
-  'Docker',
-  'Git',
-  'CI/CD',
-  'Console.log Debugging Master',
-  'Python',
-  'Clean Code',
-  'UX / DX',
-  'Testing',
-  'Comunication',
-  'Coffee-Driven Development ☕',
+const skillList: TSkill[] = [
+  { label: 'Vue.js' },
+  { label: 'TypeScript' },
+  { label: 'Nuxt' },
+  { label: 'Tailwind' },
+  { label: 'Pinia' },
+  { label: 'REST' },
+  { label: 'Node' },
+  { label: 'SQL' },
+  { label: 'Supabase' },
+  { label: 'Docker' },
+  { label: 'CI/CD' },
+  { label: 'Git' },
+  { label: 'Python' },
+  { label: 'Testing' },
+  { label: 'Clean Code' },
+  { label: 'UX / DX' },
+  { label: 'Agile' },
+  { label: 'Communication' },
+  { label: 'Problem Solving' },
+  { label: 'Console.log Debugging Master', printHidden: true },
+  { label: 'Coffee-Driven Development ☕', printHidden: true },
 ]
 
 const experienceList: TExperience[] = [
@@ -145,4 +146,6 @@ const experienceList: TExperience[] = [
     ],
   },
 ]
+
+const yearsInIt = yearsSince(earliest(experienceList.flatMap((e) => e.roles.map((r) => r.from))))
 </script>

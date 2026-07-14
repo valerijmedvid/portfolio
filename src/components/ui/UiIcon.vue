@@ -15,6 +15,8 @@ import {
   Hash,
   Sun,
   Moon,
+  Mail,
+  Languages,
 } from 'lucide-vue-next'
 
 const props = withDefaults(
@@ -37,6 +39,8 @@ const iconMap: Record<string, Component> = {
   hash: Hash,
   sun: Sun,
   moon: Moon,
+  mail: Mail,
+  languages: Languages,
 }
 
 const iconComponent = computed((): Component => {

@@ -46,6 +46,10 @@ export function formatPeriod(from: YearMonth, to: YearMonth): string {
   return `${formatYearMonth(from)} – ${formatYearMonth(to)} · ${formatDuration(diffMonths(from, to))}`
 }
 
+export function yearsSince(from: YearMonth): number {
+  return Math.floor(diffMonths(from, 'present') / 12)
+}
+
 export function earliest(values: YearMonth[]): YearMonth {
   return values.reduce((min, v) => (parseYearMonth(v) < parseYearMonth(min) ? v : min))
 }

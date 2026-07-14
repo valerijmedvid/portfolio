@@ -2,8 +2,8 @@
   <component
     :is="props.href ? 'a' : 'button'"
     :href="props.href"
-    :target="props.href ? '_blank' : undefined"
-    :rel="props.href ? 'noopener noreferrer' : undefined"
+    :target="isExternalLink ? '_blank' : undefined"
+    :rel="isExternalLink ? 'noopener noreferrer' : undefined"
     :type="props.href ? undefined : 'button'"
     :aria-label="props.label || props.ariaLabel"
     :class="[
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import UiIcon from './UiIcon.vue'
 
 const props = withDefaults(
@@ -37,5 +38,9 @@ const props = withDefaults(
     isDark: false,
     ariaLabel: undefined,
   },
+)
+
+const isExternalLink = computed(
+  (): boolean => Boolean(props.href) && !props.href?.startsWith('mailto:'),
 )
 </script>

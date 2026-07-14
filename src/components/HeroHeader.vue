@@ -30,7 +30,12 @@
 
           <span class="inline-flex items-center gap-1">
             <UiIcon name="briefcase" :size="12" />
-            10+ yrs in IT
+            {{ props.yearsInIt }}+ yrs in IT
+          </span>
+
+          <span class="inline-flex items-center gap-1">
+            <UiIcon name="languages" :size="12" />
+            Czech · English
           </span>
 
           <span class="inline-flex items-center gap-1 print:hidden">
@@ -43,6 +48,10 @@
         <div
           class="mt-2 hidden flex-col gap-0.5 text-xs text-neutral-700 print:flex print:text-left"
         >
+          <span class="inline-flex items-center gap-1.5">
+            <UiIcon name="mail" :size="11" />
+            {{ emailUser }}&#64;{{ emailDomain }}
+          </span>
           <span class="inline-flex items-center gap-1.5">
             <UiIcon name="github" :size="11" />
             github.com/valerijmedvid
@@ -62,6 +71,7 @@
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
         @click="toggle"
       />
+      <UiButton v-if="emailHref" label="Email" icon="mail" :href="emailHref" />
       <UiButton label="Github" icon="github" href="https://github.com/valerijmedvid" />
       <UiButton
         label="LinkedIn"
@@ -76,40 +86,39 @@
   <div
     class="px-6 pb-6 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300 print:px-0 print:pb-4 print:text-black"
   >
-    I’m a {{ getAge('1990-01-22') }}-year-old developer focused on building applications
-    end-to-end—from idea to production. I’m naturally curious, always learning and refining my
-    craft. I enjoy tinkering with IoT and smart-home projects, and outside the screen you’ll find me
-    doing sports, traveling, or riding my motorbike.
+    Frontend developer specializing in Vue and TypeScript, with {{ props.yearsInIt }}+ years in IT —
+    focused on building applications end-to-end, from idea to production. I’m naturally curious,
+    always learning and refining my craft. I enjoy tinkering with IoT and smart-home projects, and
+    outside the screen you’ll find me doing sports, traveling, or riding my motorbike.
   </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import ProfilePhoto from '/src/assets/vili.webp'
 import UiButton from './ui/UiButton.vue'
 import UiIcon from './ui/UiIcon.vue'
 import { useTheme } from '@/composables/useTheme'
 
+const props = defineProps<{
+  yearsInIt: number
+}>()
+
 const { isDark, toggle } = useTheme()
+
+// Email is split and assembled only after mount so the full address never
+// appears in the bundle or server-rendered HTML — keeps scrapers away
+const emailUser = 'vmedvid'
+const emailDomain = 'gmail.com'
+const emailHref = ref('')
+
+onMounted(() => {
+  emailHref.value = `mailto:${emailUser}@${emailDomain}`
+})
 
 const printPage = (): void => {
   if (typeof window !== 'undefined') {
     window.print()
   }
-}
-
-function getAge(birthDate: string) {
-  const today = new Date()
-  const birth = new Date(birthDate)
-
-  let age = today.getFullYear() - birth.getFullYear()
-  const hasHadBirthdayThisYear =
-    today.getMonth() > birth.getMonth() ||
-    (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate())
-
-  if (!hasHadBirthdayThisYear) {
-    age--
-  }
-
-  return age
 }
 </script>

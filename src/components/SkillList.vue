@@ -5,9 +5,10 @@
     <div class="flex flex-wrap gap-y-0.5">
       <UiTag
         v-for="(skill, index) in props.skillList"
-        :key="skill"
-        :label="skill"
+        :key="skill.label"
+        :label="skill.label"
         :style="{ animationDelay: `${index * 25}ms` }"
+        :class="skill.printHidden ? 'print:hidden' : ''"
         class="motion-safe:animate-slide-in print:!animate-none"
       />
     </div>
@@ -17,7 +18,12 @@
 <script setup lang="ts">
 import UiTag from './ui/UiTag.vue'
 
+export type TSkill = {
+  label: string
+  printHidden?: boolean
+}
+
 const props = defineProps<{
-  skillList: string[]
+  skillList: TSkill[]
 }>()
 </script>
