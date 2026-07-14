@@ -31,11 +31,7 @@
       v-if="singleRole"
       class="space-y-1 text-sm text-neutral-700 dark:text-neutral-300 print:text-black"
     >
-      <li
-        v-for="(bullet, i) in singleRole.bullets"
-        :key="i"
-        class="flex items-start gap-2"
-      >
+      <li v-for="(bullet, i) in singleRole.bullets" :key="i" class="flex items-start gap-2">
         <span
           class="mt-1.5 size-1 shrink-0 rounded-full bg-neutral-400 print:bg-neutral-700"
         ></span>
@@ -48,11 +44,7 @@
       v-else
       class="mt-2 ml-1 space-y-3 border-l border-dashed border-neutral-200 dark:border-neutral-800 pl-4 print:border-neutral-300 print:space-y-2"
     >
-      <div
-        v-for="(role, i) in props.experience.roles"
-        :key="i"
-        class="relative page-break-avoid"
-      >
+      <div v-for="(role, i) in props.experience.roles" :key="i" class="relative page-break-avoid">
         <div
           class="absolute -left-[20px] top-1.5 size-2 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 print:border-neutral-400"
         />
@@ -64,11 +56,7 @@
         </h5>
 
         <ul class="space-y-0.5 text-sm text-neutral-700 dark:text-neutral-300 print:text-black">
-          <li
-            v-for="(bullet, j) in role.bullets"
-            :key="j"
-            class="flex items-start gap-2"
-          >
+          <li v-for="(bullet, j) in role.bullets" :key="j" class="flex items-start gap-2">
             <span
               class="mt-1.5 size-1 shrink-0 rounded-full bg-neutral-400 print:bg-neutral-700"
             ></span>

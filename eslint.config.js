@@ -19,6 +19,7 @@ export default [
         window: 'readonly',
         document: 'readonly',
         navigator: 'readonly',
+        localStorage: 'readonly',
       },
     },
     rules: {
@@ -54,7 +55,6 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
-      '@typescript-eslint/prefer-const': 'error',
       '@typescript-eslint/no-empty-function': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-debugger': 'error',
@@ -77,7 +77,7 @@ export default [
       '@typescript-eslint': typescriptEslint,
     },
     rules: {
-      ...vuePlugin.configs['vue3-recommended'].rules,
+      ...vuePlugin.configs['recommended'].rules,
       ...typescriptEslint.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -89,7 +89,6 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
-      '@typescript-eslint/prefer-const': 'error',
       '@typescript-eslint/no-empty-function': 'error',
       'vue/multi-word-component-names': 'off',
       'vue/no-v-html': 'warn',
@@ -115,6 +114,7 @@ export default [
     ignores: [
       'dist',
       'node_modules',
+      '**/*.d.ts',
       '*.config.js',
       '*.config.ts',
       '.vscode',
