@@ -31,7 +31,10 @@ src/
     index.ts                    `Locale` type + `contentByLocale` map
     contact.ts                  name, GitHub, LinkedIn, email parts (language-independent)
   components/
-    TerminalWindow.vue          macOS-style terminal window chrome (traffic lights show ×/−/⤢ on hover); `#actions` slot in the title bar
+    TerminalWindow.vue          macOS-style window chrome; traffic lights are buttons emitting close/minimize/maximize
+                                (App: reload / business card / fullscreen); `#actions` slot in the title bar
+    BusinessCard.vue            "minimised" view — contacts in 85×55 card format. The CV stays in the DOM
+                                (`hidden print:block`) so printing from card mode still outputs the CV
     HeaderActions.vue           title-bar buttons: dark-mode toggle, CZ/EN switch, Export-PDF (window.print)
     HeroHeader.vue              `whoami` block: photo, name, typed taglines, meta, contact links (+ print-only contact lines)
     ProfilePhoto.vue            flip card: illustration front / real photo back (hover, tap, auto every 7 s); print = real photo
@@ -39,7 +42,8 @@ src/
     SkillList.vue               grouped skills rendered as an `ls skills/` listing
     TimelineSection.vue         titled `git log --graph` (UiGitLog); used for experience and (mapped) education.
                                 Multi-role companies render as a merged branch
-    ContactSection.vue          closing CTA with email (screen only)
+    ContactSection.vue          closing CTA with email (screen only) + InteractiveTerminal
+    InteractiveTerminal.vue     fake shell (`help`, `whoami`, `skills`, `sudo hire-me`, …); copy in `content.terminal`
     ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiSectionHeading, UiGitLog)
   composables/
     useTheme.ts                 dark-mode state (module-level singleton, see below)
@@ -47,6 +51,7 @@ src/
     useEmail.ts                 email address/href assembled after mount (anti-scraper)
     useLocale.ts                cs/en state + active `content` (same singleton pattern; `locale` in localStorage, default from navigator.language, sets `<html lang>`)
   utils/
+    devGreeting.ts              console greeting for devs who open DevTools (the one allowed console.log)
     period.ts                   `YearMonth` type + date-range formatting for the timeline
   style.css                     `@import 'tailwindcss'` + `@theme` block (Tailwind v4 syntax)
 ```

@@ -34,6 +34,38 @@ export const en: TContent = {
     otherLanguage: 'CZ',
     switchLanguage: 'Přepnout do češtiny',
   },
+  window: {
+    reload: 'Reload page',
+    card: 'Shrink to business card',
+    restore: 'Back to full portfolio',
+    fullscreen: 'Toggle full screen',
+    openPortfolio: 'Open portfolio',
+  },
+  terminal: {
+    hint: 'Prefer the keyboard? Type `help`.',
+    inputLabel: 'Terminal command',
+    help: [
+      { command: 'help', description: 'show this help' },
+      { command: 'whoami', description: 'who am I' },
+      { command: 'about', description: 'short bio' },
+      { command: 'skills', description: 'what I work with' },
+      { command: 'experience', description: 'career at a glance' },
+      { command: 'contact', description: 'how to reach me' },
+      { command: 'sudo hire-me', description: '😉' },
+      { command: 'lang cs|en', description: 'switch language' },
+      { command: 'theme', description: 'toggle dark mode' },
+      { command: 'clear', description: 'clear the screen' },
+    ],
+    notFound: (command) => `command not found: ${command} — try \`help\``,
+    hireDenied: 'Permission denied. Did you mean `sudo hire-me`?',
+    hireGranted:
+      '[sudo] password for recruiter: ********\n✔ Access granted. Opening your mail client…',
+    rmRf: 'Nice try 😄 This portfolio is safely backed up in git.',
+    exit: 'There is no exit here. Only the red button 🔴',
+    coffee: '☕ Brewing… done. Productivity +20 %.',
+    langSet: 'Language: English',
+    themeSet: (dark) => (dark ? 'Dark mode on 🌙' : 'Light mode on ☀️'),
+  },
   skillGroups: [
     {
       label: 'Frontend',

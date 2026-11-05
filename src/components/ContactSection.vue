@@ -15,18 +15,21 @@
       >
         {{ email.address.value }}
       </span>
-      <span aria-hidden="true" class="inline-block h-5 w-2.5 bg-accent motion-safe:animate-blink" />
     </a>
+
+    <InteractiveTerminal :years-in-it="props.yearsInIt" />
   </section>
 </template>
 
 <script setup lang="ts">
+import InteractiveTerminal from './InteractiveTerminal.vue'
 import UiSectionHeading from './ui/UiSectionHeading.vue'
 import { useEmail } from '@/composables/useEmail'
 
 const props = defineProps<{
   title: string
   cta: string
+  yearsInIt: number
 }>()
 
 const email = useEmail()

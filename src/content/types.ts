@@ -60,6 +60,28 @@ export type TContent = {
     otherLanguage: string
     switchLanguage: string
   }
+  /** Traffic-light buttons and the business-card view */
+  window: {
+    reload: string
+    card: string
+    restore: string
+    fullscreen: string
+    openPortfolio: string
+  }
+  /** Interactive terminal at the end of the page */
+  terminal: {
+    hint: string
+    inputLabel: string
+    help: { command: string; description: string }[]
+    notFound: (command: string) => string
+    hireDenied: string
+    hireGranted: string
+    rmRf: string
+    exit: string
+    coffee: string
+    langSet: string
+    themeSet: (dark: boolean) => string
+  }
   skillGroups: TSkillGroup[]
   experience: TExperience[]
   education: TEducation[]
