@@ -164,6 +164,10 @@ const argCompletions: Record<string, string[]> = {
   rm: ['-rf'],
 }
 
+// Own keys only — plain `obj[name]` would resolve `constructor`, `__proto__`, … from Object.prototype
+const lookup = <T,>(table: Record<string, T>, key: string): T | undefined =>
+  Object.prototype.hasOwnProperty.call(table, key) ? table[key] : undefined
+
 const commonPrefix = (words: string[]): string =>
   words.reduce((acc, w) => {
     let i = 0
@@ -190,7 +194,7 @@ const complete = (event: { preventDefault: () => void }): void => {
   const [first = ''] = parts
   const prefix = (parts[parts.length - 1] ?? '').toLowerCase()
   const pool =
-    parts.length === 1 ? Object.keys(commands) : (argCompletions[first.toLowerCase()] ?? [])
+    parts.length === 1 ? Object.keys(commands) : (lookup(argCompletions, first.toLowerCase()) ?? [])
   const matches = pool.filter((c) => c.startsWith(prefix)).sort()
   if (!matches.length) return
 
@@ -218,7 +222,7 @@ const submit = async (): Promise<void> => {
 
   print('input', raw)
   const [name = '', ...args] = raw.split(/\s+/)
-  const command = commands[name.toLowerCase()]
+  const command = lookup(commands, name.toLowerCase())
   if (command) command(args)
   else print('error', content.value.terminal.notFound(name))
 
