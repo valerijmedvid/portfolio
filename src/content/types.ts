@@ -34,6 +34,8 @@ export type TEducation = {
 export type TContent = {
   profile: {
     role: string
+    /** Rotating lines typed out under the name (screen only); first one should match `role` */
+    taglines: string[]
     location: string
     languages: string
     availability: string

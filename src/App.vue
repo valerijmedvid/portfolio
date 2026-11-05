@@ -27,7 +27,7 @@
         <SkillList :title="content.headings.skills" :skill-groups="content.skillGroups" />
 
         <TimelineSection
-          command="git log --experience"
+          command="git log --graph"
           :title="content.headings.experience"
           :items="content.experience"
           :locale="locale"
@@ -44,8 +44,6 @@
         <ContactSection :title="content.headings.contact" :cta="content.contactCta" />
       </TerminalWindow>
     </div>
-
-    <AccentSwitcher v-if="isDev" />
   </main>
 </template>
 
@@ -58,7 +56,6 @@ import AboutSection from './components/AboutSection.vue'
 import SkillList from './components/SkillList.vue'
 import TimelineSection from './components/TimelineSection.vue'
 import ContactSection from './components/ContactSection.vue'
-import AccentSwitcher from './components/AccentSwitcher.vue'
 import { useTheme } from './composables/useTheme'
 import { useLocale } from './composables/useLocale'
 import type { TExperience } from './content/types'
@@ -67,7 +64,6 @@ import { earliest, yearsSince } from './utils/period'
 useTheme()
 const { locale, content } = useLocale()
 
-const isDev = import.meta.env.DEV
 const terminalUser = 'valerij'
 
 const yearsInIt = computed((): number =>

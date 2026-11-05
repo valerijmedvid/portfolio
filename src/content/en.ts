@@ -3,6 +3,13 @@ import type { TContent } from './types'
 export const en: TContent = {
   profile: {
     role: 'Frontend Developer · Vue & TypeScript',
+    taglines: [
+      'Frontend Developer · Vue & TypeScript',
+      'Building AI-assisted dev workflows',
+      'Agentic flows with Claude & MCP',
+      'From idea to production',
+      'Clean code · Great DX',
+    ],
     location: 'Czechia',
     languages: 'Czech · English',
     availability: 'Open to interesting projects',

@@ -26,9 +26,13 @@
         >
           {{ contact.name }}
         </h1>
-        <p class="mt-1 font-mono text-sm text-accent print:font-sans print:text-neutral-700">
-          {{ props.profile.role
-          }}<span
+        <!-- Static role for screen readers and print; typed taglines are visual only -->
+        <p
+          class="mt-1 min-h-6 whitespace-nowrap font-mono text-sm leading-6 text-accent print:font-sans print:text-neutral-700"
+        >
+          <span class="sr-only print:not-sr-only">{{ props.profile.role }}</span>
+          <span aria-hidden="true" class="print:hidden">{{ typedTagline }}</span>
+          <span
             aria-hidden="true"
             class="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-accent motion-safe:animate-blink print:hidden"
           />
@@ -89,6 +93,7 @@ import ProfilePhoto from '/src/assets/vili.webp'
 import UiButton from './ui/UiButton.vue'
 import UiIcon from './ui/UiIcon.vue'
 import { useEmail } from '@/composables/useEmail'
+import { useTypewriter } from '@/composables/useTypewriter'
 import { contact } from '@/content/contact'
 import type { TContent } from '@/content/types'
 
@@ -99,6 +104,7 @@ const props = defineProps<{
 }>()
 
 const email = useEmail()
+const typedTagline = useTypewriter(computed((): string[] => props.profile.taglines))
 
 const metaItems = computed((): { icon: string; value: string; class?: string }[] => [
   { icon: 'mappin', value: props.profile.location },

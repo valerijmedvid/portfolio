@@ -41,8 +41,7 @@
   }
 }
 
-/* Accent palette — TEMPORARY: several options for trying out via AccentSwitcher.
-   Once one is picked, keep only that pair (light + dark) and drop data-accent. */
+/* Accent colour (emerald) — light / dark */
 :root {
   --accent: #059669;
   --accent-contrast: #fff;
@@ -50,36 +49,6 @@
 :root.dark {
   --accent: #34d399;
   --accent-contrast: #0a0a0a;
-}
-:root[data-accent='indigo'] {
-  --accent: #4f46e5;
-}
-:root.dark[data-accent='indigo'] {
-  --accent: #818cf8;
-}
-:root[data-accent='amber'] {
-  --accent: #d97706;
-}
-:root.dark[data-accent='amber'] {
-  --accent: #fbbf24;
-}
-:root[data-accent='cyan'] {
-  --accent: #0891b2;
-}
-:root.dark[data-accent='cyan'] {
-  --accent: #22d3ee;
-}
-:root[data-accent='rose'] {
-  --accent: #e11d48;
-}
-:root.dark[data-accent='rose'] {
-  --accent: #fb7185;
-}
-:root[data-accent='mono'] {
-  --accent: #171717;
-}
-:root.dark[data-accent='mono'] {
-  --accent: #f5f5f5;
 }
 
 /* Subtle dot grid behind the terminal window */

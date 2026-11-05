@@ -36,12 +36,13 @@ src/
     HeroHeader.vue              `whoami` block: photo, name, meta, contact links (+ print-only contact lines)
     AboutSection.vue            summary paragraph
     SkillList.vue               grouped skills rendered as an `ls skills/` listing
-    TimelineSection.vue         titled timeline; used for experience and (mapped) education
+    TimelineSection.vue         titled `git log --graph` (UiGitLog); used for experience and (mapped) education.
+                                Multi-role companies render as a merged branch
     ContactSection.vue          closing CTA with email (screen only)
-    AccentSwitcher.vue          TEMPORARY dev-only accent colour picker — remove once a colour is chosen
-    ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiSectionHeading, UiTimelineItem)
+    ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiSectionHeading, UiGitLog)
   composables/
     useTheme.ts                 dark-mode state (module-level singleton, see below)
+    useTypewriter.ts            types/deletes rotating `profile.taglines` in the hero (static under reduced motion)
     useEmail.ts                 email address/href assembled after mount (anti-scraper)
     useLocale.ts                cs/en state + active `content` (same singleton pattern; `locale` in localStorage, default from navigator.language, sets `<html lang>`)
   utils/
