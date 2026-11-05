@@ -45,6 +45,7 @@ export type TContent = {
   headings: {
     about: string
     skills: string
+    skillsPrint: string
     experience: string
     education: string
     contact: string

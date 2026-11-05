@@ -24,7 +24,11 @@
           :summary="content.profile.summary(yearsInIt)"
         />
 
-        <SkillList :title="content.headings.skills" :skill-groups="content.skillGroups" />
+        <SkillList
+          :title="content.headings.skills"
+          :print-title="content.headings.skillsPrint"
+          :skill-groups="content.skillGroups"
+        />
 
         <TimelineSection
           command="git log --graph"

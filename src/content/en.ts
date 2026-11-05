@@ -20,6 +20,7 @@ export const en: TContent = {
   headings: {
     about: 'About',
     skills: 'Fancy words I can actually use',
+    skillsPrint: 'Skills',
     experience: 'Experience',
     education: 'Education',
     contact: 'Contact',

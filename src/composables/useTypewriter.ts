@@ -1,9 +1,9 @@
 import { onBeforeUnmount, onMounted, ref, watch, type Ref } from 'vue'
 
-const TYPE_MS = 55
-const DELETE_MS = 28
-const HOLD_MS = 2400
-const GAP_MS = 350
+const TYPE_MS = 32
+const DELETE_MS = 16
+const HOLD_MS = 1600
+const GAP_MS = 200
 
 /**
  * Types each phrase char by char, holds it, deletes it and moves to the next — forever.

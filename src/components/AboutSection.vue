@@ -2,7 +2,7 @@
   <section class="mb-12 print:mb-4">
     <UiSectionHeading command="cat about.md" :title="props.title" />
     <p
-      class="max-w-3xl text-[15px] leading-relaxed text-neutral-700 dark:text-neutral-300 print:max-w-none print:text-sm print:text-black"
+      class="max-w-3xl text-[15px] leading-relaxed text-neutral-700 dark:text-neutral-300 print:max-w-none print:text-sm print:leading-snug print:text-black"
     >
       {{ props.summary }}
     </p>

@@ -20,6 +20,7 @@ export const cs: TContent = {
   headings: {
     about: 'O mně',
     skills: 'Buzzwordy, které fakt umím',
+    skillsPrint: 'Dovednosti',
     experience: 'Pracovní zkušenosti',
     education: 'Vzdělání',
     contact: 'Kontakt',

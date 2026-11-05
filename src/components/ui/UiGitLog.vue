@@ -65,8 +65,10 @@
       <!-- Commit -->
       <div
         v-if="row.kind === 'commit'"
-        :class="row.merge ? 'pb-1' : row.nested ? 'pb-4' : 'pb-7'"
-        class="ml-3 min-w-0 flex-1 print:ml-0 print:pb-2"
+        :class="
+          row.merge ? 'pb-1 print:pb-1' : row.nested ? 'pb-4 print:pb-1.5' : 'pb-7 print:pb-3'
+        "
+        class="ml-3 min-w-0 flex-1 print:ml-0"
       >
         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
           <p class="leading-6">
@@ -90,7 +92,7 @@
             >
           </p>
           <p
-            :class="row.nested ? 'print:hidden' : ''"
+            :class="row.nested ? 'print:text-[8.5pt] print:text-neutral-600' : ''"
             class="shrink-0 font-mono text-xs leading-6 text-neutral-500 tabular-nums dark:text-neutral-400 print:font-sans print:text-black"
           >
             {{ row.period }}
@@ -99,14 +101,14 @@
 
         <p
           v-if="row.subtitle"
-          class="font-mono text-xs text-accent print:font-sans print:text-sm print:text-neutral-800"
+          class="font-mono text-xs text-accent print:font-sans print:text-sm print:font-medium print:text-neutral-700"
         >
           <span aria-hidden="true" class="print:hidden">@ </span>{{ row.subtitle }}
         </p>
 
         <ul
           v-if="row.bullets.length"
-          class="mt-1.5 space-y-1 leading-relaxed text-neutral-700 dark:text-neutral-300 print:mt-1 print:space-y-0.5 print:text-black"
+          class="mt-1.5 space-y-1 leading-relaxed text-neutral-700 dark:text-neutral-300 print:mt-0.5 print:space-y-0 print:leading-snug print:text-black"
         >
           <li v-for="(bullet, b) in row.bullets" :key="b" class="flex items-start gap-2">
             <span

@@ -31,9 +31,10 @@ src/
     index.ts                    `Locale` type + `contentByLocale` map
     contact.ts                  name, GitHub, LinkedIn, email parts (language-independent)
   components/
-    TerminalWindow.vue          macOS-style terminal window chrome; `#actions` slot in the title bar
+    TerminalWindow.vue          macOS-style terminal window chrome (traffic lights show ×/−/⤢ on hover); `#actions` slot in the title bar
     HeaderActions.vue           title-bar buttons: dark-mode toggle, CZ/EN switch, Export-PDF (window.print)
-    HeroHeader.vue              `whoami` block: photo, name, meta, contact links (+ print-only contact lines)
+    HeroHeader.vue              `whoami` block: photo, name, typed taglines, meta, contact links (+ print-only contact lines)
+    ProfilePhoto.vue            flip card: illustration front / real photo back (hover, tap, auto every 7 s); print = real photo
     AboutSection.vue            summary paragraph
     SkillList.vue               grouped skills rendered as an `ls skills/` listing
     TimelineSection.vue         titled `git log --graph` (UiGitLog); used for experience and (mapped) education.

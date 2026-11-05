@@ -6,10 +6,21 @@
     <div
       class="flex items-center gap-3 border-b border-black/10 bg-neutral-100/80 px-4 py-2.5 dark:border-white/10 dark:bg-neutral-900/80 print:hidden"
     >
-      <div aria-hidden="true" class="flex shrink-0 gap-1.5">
-        <span class="size-3 rounded-full bg-[#ff5f57]" />
-        <span class="size-3 rounded-full bg-[#febc2e]" />
-        <span class="size-3 rounded-full bg-[#28c840]" />
+      <!-- macOS traffic lights: decorative, glyphs appear on hover like the real ones -->
+      <div aria-hidden="true" class="group flex shrink-0 gap-2">
+        <span
+          v-for="light in trafficLights"
+          :key="light.icon"
+          :style="{ backgroundColor: light.color }"
+          class="flex size-3 items-center justify-center rounded-full ring-1 ring-black/10 ring-inset"
+        >
+          <UiIcon
+            :name="light.icon"
+            :size="8"
+            :stroke-width="3"
+            class="text-black/60 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+          />
+        </span>
       </div>
       <p
         aria-hidden="true"
@@ -29,7 +40,15 @@
 </template>
 
 <script setup lang="ts">
+import UiIcon from './ui/UiIcon.vue'
+
 const props = defineProps<{
   title: string
 }>()
+
+const trafficLights = [
+  { color: '#ff5f57', icon: 'x' },
+  { color: '#febc2e', icon: 'minus' },
+  { color: '#28c840', icon: 'maximize' },
+]
 </script>

@@ -1,6 +1,6 @@
 <template>
   <section class="mb-12 print:mb-3">
-    <UiSectionHeading command="ls skills/" :title="props.title" />
+    <UiSectionHeading command="ls skills/" :title="props.title" :print-title="props.printTitle" />
     <dl class="grid gap-x-8 gap-y-4 sm:grid-cols-2 print:grid-cols-2 print:gap-y-1">
       <div v-for="(group, groupIndex) in props.skillGroups" :key="group.label">
         <dt
@@ -31,6 +31,7 @@ import type { TSkillGroup } from '@/content/types'
 
 const props = defineProps<{
   title: string
+  printTitle: string
   skillGroups: TSkillGroup[]
 }>()
 
