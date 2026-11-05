@@ -5,7 +5,7 @@
     :target="isExternalLink ? '_blank' : undefined"
     :rel="isExternalLink ? 'noopener noreferrer' : undefined"
     :type="props.href ? undefined : 'button'"
-    :aria-label="props.label || props.ariaLabel"
+    :aria-label="props.ariaLabel || props.label"
     :class="[
       props.isDark
         ? 'bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100'

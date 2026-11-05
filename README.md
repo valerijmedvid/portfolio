@@ -18,11 +18,12 @@ Moje portfolio postavené na Vue 3 + TypeScript s Tailwind CSS. Prezentuje mé d
 
 ## 📋 Obsah
 
-- **HeroHeader** - Úvodní sekce s kontaktem, přepínačem dark mode a tlačítkem Export PDF
-- **SkillList** - Přehled dovedností s tagy
-- **ExperienceHistory** - Pracovní zkušenosti a projekty (timeline s automatickým výpočtem délky období)
+- **HeroHeader** + **HeaderActions** - Úvodní sekce s kontaktem, přepínačem dark mode a tlačítkem Export PDF
+- **AboutSection** - Krátké shrnutí
+- **SkillList** - Dovednosti seskupené podle oblastí
+- **TimelineSection** - Pracovní zkušenosti a vzdělání (timeline s automatickým výpočtem délky období)
 
-Veškerá data (skills, experience) jsou definována přímo v `src/App.vue` — žádný store ani API.
+Veškerá data a texty jsou v `src/content/` (`en.ts`, kontakty v `contact.ts`) — žádný store ani API.
 
 ## 🚀 Spuštění
 

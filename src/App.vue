@@ -6,146 +6,56 @@
       <section
         class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-neutral-950/60 backdrop-blur shadow-sm print:bg-white print:shadow-none print:border-0 print:rounded-none print:backdrop-blur-none"
       >
-        <HeroHeader :years-in-it="yearsInIt" />
+        <HeroHeader
+          :profile="content.profile"
+          :actions="content.actions"
+          :years-in-it="yearsInIt"
+        />
 
-        <SkillList :skillList />
+        <AboutSection :summary="content.profile.summary(yearsInIt)" />
 
-        <ExperienceHistory :experienceList />
+        <SkillList :title="content.headings.skills" :skill-groups="content.skillGroups" />
+
+        <TimelineSection
+          :title="content.headings.experience"
+          :items="content.experience"
+          :locale="locale"
+        />
+
+        <TimelineSection
+          v-if="educationItems.length"
+          :title="content.headings.education"
+          :items="educationItems"
+          :locale="locale"
+        />
       </section>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import HeroHeader from './components/HeroHeader.vue'
-import SkillList, { type TSkill } from './components/SkillList.vue'
-import ExperienceHistory from './components/ExperienceHistory.vue'
-import type { TExperience } from './components/ui/UiTimelineItem.vue'
+import AboutSection from './components/AboutSection.vue'
+import SkillList from './components/SkillList.vue'
+import TimelineSection from './components/TimelineSection.vue'
 import { useTheme } from './composables/useTheme'
+import { useLocale } from './composables/useLocale'
+import type { TExperience } from './content/types'
 import { earliest, yearsSince } from './utils/period'
 
 useTheme()
+const { locale, content } = useLocale()
 
-const skillList: TSkill[] = [
-  { label: 'Vue.js' },
-  { label: 'TypeScript' },
-  { label: 'Nuxt' },
-  { label: 'Tailwind' },
-  { label: 'Pinia' },
-  { label: 'REST' },
-  { label: 'Node' },
-  { label: 'SQL' },
-  { label: 'Supabase' },
-  { label: 'Docker' },
-  { label: 'CI/CD' },
-  { label: 'Git' },
-  { label: 'Python' },
-  { label: 'Testing' },
-  { label: 'Clean Code' },
-  { label: 'UX / DX' },
-  { label: 'Agile' },
-  { label: 'Communication' },
-  { label: 'Problem Solving' },
-  { label: 'Console.log Debugging Master', printHidden: true },
-  { label: 'Coffee-Driven Development ☕', printHidden: true },
-]
+const yearsInIt = computed((): number =>
+  yearsSince(earliest(content.value.experience.flatMap((e) => e.roles.map((r) => r.from)))),
+)
 
-const experienceList: TExperience[] = [
-  {
-    company: 'LutherOne',
-    roles: [
-      {
-        title: 'Senior Frontend Developer',
-        from: '2026-01',
-        to: 'present',
-        bullets: [
-          'Building employee-experience and people-analytics platform in Vue 3 + TypeScript',
-          'Shaping component patterns, code quality and DX across the frontend',
-          'Architecture decisions, code reviews, cross-team collaboration',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'Komerční banka — Modrá pyramida (NOBY)',
-    roles: [
-      {
-        title: 'Frontend Developer',
-        from: '2024-01',
-        to: '2026-03',
-        bullets: [
-          'Built customer-facing apps for the new digital bank NOBY (subsidiary Modrá pyramida)',
-          'Form-heavy financial UIs with strict accessibility and access-control requirements',
-          'Owned code quality: ESLint, unit tests, CI pipelines, code reviews',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'Košík.cz',
-    roles: [
-      {
-        title: 'Frontend Developer',
-        from: '2022-06',
-        to: '2023-12',
-        bullets: [
-          'Migrated legacy Options API codebase to Composition API with measurable perf wins',
-          'Contributed to design-system tokens and reusable component library',
-          'Worked in a cross-functional squad alongside product, design and backend',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'Avast',
-    roles: [
-      {
-        title: 'Software Engineer',
-        from: '2019-03',
-        to: '2022-05',
-        bullets: [
-          'Internal dashboards and tooling — Vue.js, Python, SQL, RabbitMQ, gRPC',
-          'Dockerized environments deployed to Kubernetes via automated CI/CD',
-        ],
-      },
-      {
-        title: 'Senior Threat Operations Analyst',
-        from: '2017-07',
-        to: '2019-03',
-        bullets: [
-          'Led threat-ops processes; automated analyst workflows with Python and JS',
-          'Bridged operations and engineering — the gateway into full-time development',
-        ],
-      },
-      {
-        title: 'Malware Analyst & Operator',
-        from: '2014-07',
-        to: '2017-07',
-        bullets: [
-          'Malware analysis and virus-definition release pipeline',
-          'Data processing and automation in Python and SQL',
-        ],
-      },
-      {
-        title: 'Junior Malware Analyst & Operator',
-        from: '2012-10',
-        to: '2014-07',
-        bullets: ['PC malware analysis, sample triage and reporting'],
-      },
-    ],
-  },
-  {
-    company: 'APS Czech Republic',
-    roles: [
-      {
-        title: 'IT & Database Specialist',
-        from: '2011-10',
-        to: '2012-09',
-        bullets: ['IT administration, MS SQL development and tuning, user support'],
-      },
-    ],
-  },
-]
-
-const yearsInIt = yearsSince(earliest(experienceList.flatMap((e) => e.roles.map((r) => r.from))))
+// Education reuses the experience timeline: school ~ company, field ~ role
+const educationItems = computed((): TExperience[] =>
+  content.value.education.map((e) => ({
+    company: e.school,
+    roles: [{ title: e.field, from: e.from, to: e.to, bullets: e.bullets }],
+  })),
+)
 </script>

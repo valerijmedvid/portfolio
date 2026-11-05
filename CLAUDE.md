@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio / CV — a single-page Vue 3 + TypeScript + Vite app styled with Tailwind v4. Deployed via GitHub Actions to an FTP host on push to `main` (`.github/workflows/main.yaml`).
 
-**There is no Pinia, no router, and no state management** — all content (skills, experience) is hardcoded as inline arrays in `src/App.vue:28`. Adding a new role or skill means editing those arrays.
+**There is no Pinia, no router, and no state management** — all content (skills, experience, education, UI copy) is hardcoded per language in `src/content/cs.ts` and `src/content/en.ts` (both typed by `TContent` in `src/content/types.ts` — **edit both** when changing content); language-independent contacts are in `src/content/contact.ts`. Adding a new role or skill means editing those arrays.
 
 ## Commands
 
@@ -24,20 +24,28 @@ There are no tests in this repo.
 
 ```
 src/
-  App.vue                       data lives here (skillList, experienceList) and is passed down as props
+  App.vue                       picks the content object and passes slices down as props
+  content/
+    types.ts                    TContent + TSkillGroup / TExperience / TEducation
+    cs.ts / en.ts               all copy and data, one file per language
+    index.ts                    `Locale` type + `contentByLocale` map
+    contact.ts                  name, GitHub, LinkedIn, email parts (language-independent)
   components/
-    HeroHeader.vue              header + summary; owns the dark-mode toggle and Export-PDF (window.print) button
-    SkillList.vue               renders skill tags
-    ExperienceHistory.vue       renders the experience timeline
+    HeroHeader.vue              photo, name, meta line, print-only contacts
+    HeaderActions.vue           dark-mode toggle, contact links, Export-PDF (window.print) button
+    AboutSection.vue            summary paragraph
+    SkillList.vue               renders grouped skill tags
+    TimelineSection.vue         titled timeline; used for experience and (mapped) education
     ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiTimelineItem)
   composables/
     useTheme.ts                 dark-mode state (module-level singleton, see below)
+    useLocale.ts                cs/en state + active `content` (same singleton pattern; `locale` in localStorage, default from navigator.language, sets `<html lang>`)
   utils/
     period.ts                   `YearMonth` type + date-range formatting for the timeline
   style.css                     `@import 'tailwindcss'` + `@theme` block (Tailwind v4 syntax)
 ```
 
-Data flow is one-way and trivial: `App.vue` → feature components (`Hero`, `Skill`, `Experience`) → `ui/` primitives. There is no shared store; the only composable is `useTheme` and the only util is `period.ts`. The project is small enough that you almost certainly don't need to add more.
+Data flow is one-way and trivial: `content/` → `App.vue` → feature components → `ui/` primitives. There is no shared store; the composables are `useTheme` and `useLocale` and the only util is `period.ts` (locale-aware via `Intl`). The project is small enough that you almost certainly don't need to add more.
 
 ### Icons
 
@@ -45,7 +53,7 @@ Data flow is one-way and trivial: `App.vue` → feature components (`Hero`, `Ski
 
 ### Dark mode
 
-Class-based, not media-query-based: `src/style.css` declares `@custom-variant dark (&:where(.dark, .dark *))`, and `useTheme` (`src/composables/useTheme.ts`) toggles the `dark` class on `<html>`. State is a module-level singleton (mode persisted to `localStorage` under `theme`, defaults to system preference). `HeroHeader` renders the toggle. Print always forces light mode via `beforeprint`/`afterprint` listeners — don't rely on `dark:` styles in print output.
+Class-based, not media-query-based: `src/style.css` declares `@custom-variant dark (&:where(.dark, .dark *))`, and `useTheme` (`src/composables/useTheme.ts`) toggles the `dark` class on `<html>`. State is a module-level singleton (mode persisted to `localStorage` under `theme`, defaults to system preference). `HeaderActions` renders the toggle. Print always forces light mode via `beforeprint`/`afterprint` listeners — don't rely on `dark:` styles in print output.
 
 ### Print / Export PDF
 

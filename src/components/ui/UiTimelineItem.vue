@@ -15,7 +15,7 @@
       <p
         class="text-xs text-neutral-500 dark:text-neutral-400 tabular-nums sm:text-right print:text-black"
       >
-        {{ formatPeriod(companyRange.from, companyRange.to) }}
+        {{ formatPeriod(companyRange.from, companyRange.to, props.locale) }}
       </p>
     </div>
 
@@ -71,22 +71,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { formatPeriod, earliest, latest, type YearMonth } from '@/utils/period'
-
-export type TRole = {
-  title: string
-  from: YearMonth
-  to: YearMonth
-  bullets: string[]
-}
-
-export type TExperience = {
-  company: string
-  roles: TRole[]
-}
+import type { Locale } from '@/content'
+import type { TExperience, TRole } from '@/content/types'
 
 const props = withDefaults(
   defineProps<{
     experience: TExperience
+    locale: Locale
     index?: number
   }>(),
   { index: 0 },
