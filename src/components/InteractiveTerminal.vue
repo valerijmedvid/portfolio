@@ -32,6 +32,7 @@
         class="min-w-0 flex-1 bg-transparent text-neutral-900 caret-accent outline-none dark:text-neutral-100"
         @keydown.up.prevent="browseHistory(-1)"
         @keydown.down.prevent="browseHistory(1)"
+        @keydown.tab="complete"
       />
     </form>
   </div>
@@ -154,6 +155,60 @@ commands['cat'] = (args): void => (args[0] === 'about.md' ? commands.about?.([])
 commands['ls'] = (): void => commands.skills?.([])
 commands['git'] = (): void => commands.experience?.([])
 
+// Second-word completions for commands that take an argument
+const argCompletions: Record<string, string[]> = {
+  sudo: ['hire-me'],
+  lang: ['cs', 'en'],
+  cat: ['about.md'],
+  git: ['log'],
+  rm: ['-rf'],
+}
+
+const commonPrefix = (words: string[]): string =>
+  words.reduce((acc, w) => {
+    let i = 0
+    while (i < acc.length && acc[i] === w[i]) i++
+    return acc.slice(0, i)
+  })
+
+const scrollToEnd = async (): Promise<void> => {
+  await nextTick()
+  if (scroller.value) scroller.value.scrollTop = scroller.value.scrollHeight
+}
+
+/**
+ * Bash-like Tab completion: one match completes it, several complete their common
+ * prefix, and pressing Tab again lists them. On an empty line Tab keeps its normal
+ * job (moving focus), so keyboard users are never trapped in the terminal.
+ */
+const complete = (event: { preventDefault: () => void }): void => {
+  const value = draft.value
+  if (!value.trim()) return
+  event.preventDefault()
+
+  const parts = value.split(' ')
+  const [first = ''] = parts
+  const prefix = (parts[parts.length - 1] ?? '').toLowerCase()
+  const pool =
+    parts.length === 1 ? Object.keys(commands) : (argCompletions[first.toLowerCase()] ?? [])
+  const matches = pool.filter((c) => c.startsWith(prefix)).sort()
+  if (!matches.length) return
+
+  const replaceLast = (word: string): string => [...parts.slice(0, -1), word].join(' ')
+  if (matches.length === 1) {
+    draft.value = `${replaceLast(matches[0] ?? '')} `
+    return
+  }
+  const common = commonPrefix(matches)
+  if (common.length > prefix.length) {
+    draft.value = replaceLast(common)
+    return
+  }
+  print('input', value)
+  print('output', matches.join('  '))
+  void scrollToEnd()
+}
+
 const submit = async (): Promise<void> => {
   const raw = draft.value.trim()
   draft.value = ''
@@ -167,8 +222,7 @@ const submit = async (): Promise<void> => {
   if (command) command(args)
   else print('error', content.value.terminal.notFound(name))
 
-  await nextTick()
-  if (scroller.value) scroller.value.scrollTop = scroller.value.scrollHeight
+  await scrollToEnd()
 }
 
 const browseHistory = (step: number): void => {
