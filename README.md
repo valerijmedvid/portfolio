@@ -30,6 +30,9 @@ Veškerá data a texty jsou v `src/content/` — `cs.ts` a `en.ts` (stejný tvar
 upravit oba), kontakty v `contact.ts`. Žádný store ani API. Architektura komponent je popsaná
 v `CLAUDE.md`.
 
+Logo (monogram VM, verze V3) je v `brand/` v černé a bílé variantě. Favicony v `public/favicon/` vycházejí
+z monogramu se zelenou stříškou.
+
 Náhledový obrázek pro sdílení (`public/og-image.png`, 1200×630) je statický — při změně role nebo
 fotky je potřeba ho vygenerovat znovu.
 

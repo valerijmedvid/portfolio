@@ -1,0 +1,47 @@
+VALERIJ MEDVID — V3
+===================
+
+Geometrická vektorová rekonstrukce dodané varianty V3.
+Opravená symetrie: všechny tři části monogramu sdílejí stejnou svislou
+osu. Levá a pravá polovina jsou přesně zrcadlené, včetně zakončení.
+Spodní tahy tvoří souvislý spodní obrys.
+Horní otevření, monogram, horizontální sazba a podtitulek vycházejí
+z přiloženého návrhového přehledu.
+
+SOUBORY
+
+valerij-medvid-v3-logo-black.svg
+    Tmavé horizontální logo (#0B0B0C) pro světlé pozadí.
+valerij-medvid-v3-logo-white.svg
+    Bílé horizontální logo (#FFFFFF) pro tmavé pozadí.
+valerij-medvid-v3-icon-black.svg
+valerij-medvid-v3-icon-white.svg
+    Samostatný monogram ve čtvercovém formátu.
+
+Ke každému SVG je přiložené PNG s průhledným pozadím:
+    horizontální logo: 6400 × 1600 px
+    samostatná ikona: 4096 × 4096 px
+
+SVG obsahují skutečné vektorové cesty včetně nápisu a podtitulku.
+Typografie je překreslena do křivek podle dodaného návrhu.
+Soubory nevyžadují font, neobsahují vložený rastr ani externí odkazy.
+SVG má viewBox a lze je libovolně zvětšovat.
+Náhledový obrázek má světlé a tmavé pozadí pouze pro prezentaci.
+
+POUŽITÍ NA WEBU
+
+Pro hlavní logo použij SVG. Pro běžný světlý web například:
+
+<img src="/assets/valerij-medvid-v3-logo-black.svg"
+     alt="Valerij Medvid – software developer"
+     width="320" height="80">
+
+Zachovej poměr stran 4:1 a při změně šířky nastav výšku na auto.
+Pro ikonu zachovej poměr stran 1:1. V úzkém prostoru použij ikonu;
+drobný podtitulek se při malém zobrazení celého loga přirozeně zmenšuje.
+
+Ve složce web je favicon.svg, který automaticky mění barvu podle
+světlého/tmavého vzhledu prohlížeče, a záložní favicon.ico.
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">

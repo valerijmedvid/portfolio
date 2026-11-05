@@ -44,7 +44,8 @@ src/
                                 Multi-role companies render as a merged branch
     ContactSection.vue          closing CTA with email (screen only) + InteractiveTerminal
     InteractiveTerminal.vue     fake shell (`help`, `whoami`, `skills`, `sudo hire-me`, …); copy in `content.terminal`
-    ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiSectionHeading, UiGitLog)
+    ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiSectionHeading, UiGitLog,
+                                UiLogoMark — the VM monogram, body = currentColor, top chevron = accent)
   composables/
     useTheme.ts                 dark-mode state (module-level singleton, see below)
     useTypewriter.ts            types/deletes rotating `profile.taglines` in the hero (static under reduced motion)
@@ -77,6 +78,13 @@ The PDF _is_ the print stylesheet: layout adapts via Tailwind `print:` variants 
 (`print:hidden`, `print:font-sans`, …). When changing layout, run `npm run build` and check both PDFs still fit
 one A4 page — it's a first-class output, not a side effect. `?lang=cs|en` in the URL also overrides the saved
 language for visitors.
+
+### Logo & favicons
+
+Brand originals (V3 monogram + horizontal logo, black/white SVG) live in `brand/` — not deployed. The site uses the
+monogram with the top chevron in the accent colour: inline in `UiLogoMark.vue`, and as `public/favicon/favicon.svg`
+(adapts to `prefers-color-scheme`). The PNG/ICO favicons are rendered from that SVG on a dark tile — regenerate them
+if the mark changes.
 
 ### Path alias
 

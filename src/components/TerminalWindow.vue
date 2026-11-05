@@ -52,8 +52,9 @@
       </div>
       <p
         aria-hidden="true"
-        class="hidden flex-1 truncate text-center font-mono text-xs text-neutral-500 sm:block"
+        class="hidden flex-1 items-center justify-center gap-2 truncate font-mono text-xs text-neutral-500 sm:flex"
       >
+        <UiLogoMark class="size-5 shrink-0 text-neutral-700 dark:text-neutral-300" />
         {{ props.title }}
       </p>
       <div class="ml-auto flex shrink-0 items-center gap-1.5 sm:ml-0">
@@ -74,6 +75,8 @@
 </template>
 
 <script setup lang="ts">
+import UiLogoMark from './ui/UiLogoMark.vue'
+
 type TLight = 'close' | 'minimize' | 'maximize'
 
 const props = withDefaults(
