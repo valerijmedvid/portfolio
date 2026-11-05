@@ -18,6 +18,8 @@ function parseYearMonth(s: YearMonth): Date {
 
 function formatYearMonth(s: YearMonth, locale: Locale): string {
   if (s === 'present') return PRESENT[locale]
+  // Czech CVs use "06/2022"; Intl's Czech month names ("červen 2022") are too long for the timeline
+  if (locale === 'cs') return `${s.slice(5, 7)}/${s.slice(0, 4)}`
   return new Intl.DateTimeFormat(locale, { month: 'short', year: 'numeric' }).format(
     parseYearMonth(s),
   )

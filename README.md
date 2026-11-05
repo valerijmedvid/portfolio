@@ -6,7 +6,14 @@ Osobní portfolio - moderní, responzivní a rychlé.
 
 ## 🎯 O projektu
 
-Moje portfolio postavené na Vue 3 + TypeScript s Tailwind CSS. Prezentuje mé dovednosti, zkušenosti a projekty. Podporuje dark mode (s přepínačem i podle systému) a export do PDF přes tisk.
+Portfolio a CV ve stylu terminálu, postavené na Vue 3 + TypeScript + Tailwind v4.
+
+- **CZ / EN** — přepínač jazyka, výchozí podle prohlížeče
+- **Dark mode** — přepínač i podle systému
+- **Export PDF** — tisk z prohlížeče, samostatný layout jako klasické jednostránkové CV
+- **Zkušenosti jako `git log --graph`**, skills jako `ls`, typewriter pod jménem, flip fotky
+- **Easter eggy** — semafor okna (🔴 reload, 🟡 vizitka, 🟢 fullscreen), interaktivní terminál
+  (`help`, Tab doplňování), pozdrav v DevTools konzoli
 
 ## 🛠️ Tech Stack
 
@@ -18,12 +25,12 @@ Moje portfolio postavené na Vue 3 + TypeScript s Tailwind CSS. Prezentuje mé d
 
 ## 📋 Obsah
 
-- **HeroHeader** + **HeaderActions** - Úvodní sekce s kontaktem, přepínačem dark mode a tlačítkem Export PDF
-- **AboutSection** - Krátké shrnutí
-- **SkillList** - Dovednosti seskupené podle oblastí
-- **TimelineSection** - Pracovní zkušenosti a vzdělání (timeline s automatickým výpočtem délky období)
+Veškerá data a texty jsou v `src/content/` — `cs.ts` a `en.ts` (stejný tvar `TContent`, při změně
+upravit oba), kontakty v `contact.ts`. Žádný store ani API. Architektura komponent je popsaná
+v `CLAUDE.md`.
 
-Veškerá data a texty jsou v `src/content/` (`en.ts`, kontakty v `contact.ts`) — žádný store ani API.
+Náhledový obrázek pro sdílení (`public/og-image.png`, 1200×630) je statický — při změně role nebo
+fotky je potřeba ho vygenerovat znovu.
 
 ## 🚀 Spuštění
 
