@@ -10,7 +10,8 @@ Portfolio a CV ve stylu terminálu, postavené na Vue 3 + TypeScript + Tailwind 
 
 - **CZ / EN** — přepínač jazyka, výchozí podle prohlížeče
 - **Dark mode** — přepínač i podle systému
-- **Export PDF** — tisk z prohlížeče, samostatný layout jako klasické jednostránkové CV
+- **Stažení PDF** — `cv-cs.pdf` / `cv-en.pdf` se generují při `npm run build` přes headless Chrome
+  (`scripts/generate-cv-pdf.ts`, potřebuje lokálně Chrome) z tiskového layoutu — klasické jednostránkové CV
 - **Zkušenosti jako `git log --graph`**, skills jako `ls`, typewriter pod jménem, flip fotky
 - **Easter eggy** — semafor okna (🔴 reload, 🟡 vizitka, 🟢 fullscreen), interaktivní terminál
   (`help`, Tab doplňování), pozdrav v DevTools konzoli

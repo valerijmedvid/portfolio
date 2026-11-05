@@ -21,8 +21,12 @@ function init(): void {
   if (initialized || typeof window === 'undefined') return
   initialized = true
 
+  // ?lang=cs|en (shareable links, PDF generator) > saved choice > browser language
+  const fromUrl = new window.URLSearchParams(window.location.search).get('lang')
   const stored = localStorage.getItem(STORAGE_KEY)
-  if (isLocale(stored)) {
+  if (isLocale(fromUrl)) {
+    locale.value = fromUrl
+  } else if (isLocale(stored)) {
     locale.value = stored
   } else {
     // Czech and Slovak visitors get the Czech version, everyone else English

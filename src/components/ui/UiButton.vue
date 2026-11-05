@@ -40,7 +40,6 @@ const props = withDefaults(
   },
 )
 
-const isExternalLink = computed(
-  (): boolean => Boolean(props.href) && !props.href?.startsWith('mailto:'),
-)
+// Only absolute http(s) links open in a new tab — not mailto: or same-site files like the CV PDF
+const isExternalLink = computed((): boolean => /^https?:\/\//.test(props.href ?? ''))
 </script>

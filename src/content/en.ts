@@ -28,7 +28,7 @@ export const en: TContent = {
   contactCta: "Got an interesting project? Let's build something together.",
   actions: {
     email: 'Email',
-    exportPdf: 'Export PDF',
+    exportPdf: 'Download PDF',
     switchToLight: 'Switch to light mode',
     switchToDark: 'Switch to dark mode',
     otherLanguage: 'CZ',

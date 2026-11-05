@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc && vite build && node scripts/generate-cv-pdf.ts",
     "preview": "vite preview",
     "lint": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,ts,tsx,vue,json,css,scss,md}\""

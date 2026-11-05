@@ -68,7 +68,15 @@ Class-based, not media-query-based: `src/style.css` declares `@custom-variant da
 
 ### Print / Export PDF
 
-The "Export PDF" button calls `window.print()`. Layout adapts via Tailwind `print:` variants scattered across components (`print:px-0`, `print:hidden`, `print:flex-row`, etc.). When changing layout, check the print result too — it's a first-class output, not a side effect.
+`npm run build` ends with `scripts/generate-cv-pdf.ts`: it serves `dist/` via Vite's `preview()` API and has
+headless Chrome print `?lang=cs` / `?lang=en` into `dist/cv-cs.pdf` / `dist/cv-en.pdf` (Chrome from `CHROME_PATH`
+or the usual macOS/Linux paths — GitHub's `ubuntu-latest` has it). The "Download PDF" button links to the file for
+the current locale; on the dev server (no PDFs) it falls back to `window.print()`.
+
+The PDF _is_ the print stylesheet: layout adapts via Tailwind `print:` variants scattered across components
+(`print:hidden`, `print:font-sans`, …). When changing layout, run `npm run build` and check both PDFs still fit
+one A4 page — it's a first-class output, not a side effect. `?lang=cs|en` in the URL also overrides the saved
+language for visitors.
 
 ### Path alias
 
@@ -93,6 +101,5 @@ Prettier: no semicolons, single quotes, trailing commas, 100-col width, LF line 
 ## Styling
 
 Visual concept: developer terminal. Each section starts with a decorative shell prompt (`UiSectionHeading`, `aria-hidden`, hidden in print) followed by a real `<h2>`. One accent colour, exposed as Tailwind `accent` / `accent-contrast` via CSS variables in `src/style.css`. Monospace (`font-mono`, JetBrains Mono) is screen-only flavour — print switches back to `font-sans` so the PDF stays a classic CV.
-
 
 Tailwind v4 — configured via `@tailwindcss/postcss` and the `@theme` block in `src/style.css`. There is a `tailwind.config.js` but core theme tokens (e.g. `--font-sans: 'Work Sans Variable'`) live in CSS, not JS. Fonts are self-hosted via `@fontsource-variable/*` imported in `src/main.ts` — don't re-add Google Fonts links (render-blocking, Lighthouse). Dark-mode classes (`dark:*`) appear throughout and are driven by the `.dark` class on `<html>` (see Dark mode above).
