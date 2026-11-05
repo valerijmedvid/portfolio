@@ -47,6 +47,11 @@ export function formatPeriod(from: YearMonth, to: YearMonth, locale: Locale): st
   return `${formatYearMonth(from, locale)} – ${formatYearMonth(to, locale)} · ${formatDuration(diffMonths(from, to), locale)}`
 }
 
+export function formatYearRange(from: YearMonth, to: YearMonth, locale: Locale): string {
+  const year = (v: YearMonth): string => (v === 'present' ? PRESENT[locale] : v.slice(0, 4))
+  return `${year(from)} – ${year(to)}`
+}
+
 export function yearsSince(from: YearMonth): number {
   return Math.floor(diffMonths(from, 'present') / 12)
 }

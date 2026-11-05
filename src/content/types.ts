@@ -15,6 +15,8 @@ export type TRole = {
   from: YearMonth
   to: YearMonth
   bullets: string[]
+  /** Show "2006 – 2010" instead of months + duration (used for education) */
+  yearsOnly?: boolean
 }
 
 export type TExperience = {

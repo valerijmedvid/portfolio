@@ -1,7 +1,7 @@
 <template>
-  <section class="mb-12 print:mb-3">
+  <section class="mb-12 print:mb-2.5">
     <UiSectionHeading command="ls skills/" :title="props.title" :print-title="props.printTitle" />
-    <dl class="grid gap-x-8 gap-y-4 sm:grid-cols-2 print:grid-cols-2 print:gap-y-1">
+    <dl class="grid gap-x-8 gap-y-4 sm:grid-cols-2 print:grid-cols-3 print:gap-x-6 print:gap-y-1">
       <div v-for="(group, groupIndex) in props.skillGroups" :key="group.label">
         <dt
           class="mb-1.5 font-mono text-xs font-bold text-accent print:mb-0.5 print:font-sans print:font-semibold print:text-neutral-700"

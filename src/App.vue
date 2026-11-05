@@ -120,7 +120,7 @@ const yearsInIt = computed((): number =>
 const educationItems = computed((): TExperience[] =>
   content.value.education.map((e) => ({
     company: e.school,
-    roles: [{ title: e.field, from: e.from, to: e.to, bullets: e.bullets }],
+    roles: [{ title: e.field, from: e.from, to: e.to, bullets: e.bullets, yearsOnly: true }],
   })),
 )
 

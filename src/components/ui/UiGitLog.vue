@@ -66,7 +66,7 @@
       <div
         v-if="row.kind === 'commit'"
         :class="
-          row.merge ? 'pb-1 print:pb-1' : row.nested ? 'pb-4 print:pb-1.5' : 'pb-7 print:pb-3'
+          row.merge ? 'pb-1 print:pb-0.5' : row.nested ? 'pb-4 print:pb-1' : 'pb-7 print:pb-2.5'
         "
         class="ml-3 min-w-0 flex-1 print:ml-0"
       >
@@ -92,7 +92,7 @@
             >
           </p>
           <p
-            :class="row.nested ? 'print:text-[8.5pt] print:text-neutral-600' : ''"
+            :class="row.nested ? 'print:text-neutral-600' : ''"
             class="shrink-0 font-mono text-xs leading-6 text-neutral-500 tabular-nums dark:text-neutral-400 print:font-sans print:text-black"
           >
             {{ row.period }}
@@ -126,7 +126,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { earliest, formatPeriod, latest } from '@/utils/period'
+import { earliest, formatPeriod, formatYearRange, latest } from '@/utils/period'
 import type { Locale } from '@/content'
 import type { TExperience } from '@/content/types'
 
@@ -206,7 +206,11 @@ const rows = computed((): (TCommitRow | TEdgeRow)[] => {
           graph: ['*'],
           title: onlyRole.title,
           subtitle: exp.company,
-          period: formatPeriod(onlyRole.from, onlyRole.to, props.locale),
+          period: (onlyRole.yearsOnly ? formatYearRange : formatPeriod)(
+            onlyRole.from,
+            onlyRole.to,
+            props.locale,
+          ),
           bullets: onlyRole.bullets,
         }),
       )

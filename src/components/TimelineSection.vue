@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-12 print:mb-3">
+  <section class="mb-12 print:mb-2.5">
     <UiSectionHeading :command="props.command" :title="props.title" />
 
     <UiGitLog :items="props.items" :locale="props.locale" />

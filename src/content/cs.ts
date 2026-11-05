@@ -15,7 +15,7 @@ export const cs: TContent = {
     availability: 'Otevřený zajímavým projektům',
     yearsInIt: (years) => `${years}+ let v IT`,
     summary: (years) =>
-      `Frontend developer se specializací na Vue a TypeScript a s více než ${years} lety v IT — zaměřuji se na vývoj aplikací od nápadu až do produkce. Jsem od přírody zvědavý, pořád se učím a zdokonaluji své řemeslo. Rád si hraju s IoT a chytrou domácností a mimo obrazovku mě najdete u sportu, na cestách nebo na motorce.`,
+      `Frontend developer se specializací na Vue a TypeScript a s více než ${years} lety v IT — zaměřuji se na vývoj aplikací od nápadu až do produkce. Poslední dobou se věnuji vývoji s pomocí AI — navrhuji agentní workflow, které zrychlují celý tým. Jsem od přírody zvědavý, pořád se učím a zdokonaluji své řemeslo. Rád si hraju s IoT a chytrou domácností a mimo obrazovku mě najdete u sportu, na cestách nebo na motorce.`,
   },
   headings: {
     about: 'O mně',
@@ -77,6 +77,15 @@ export const cs: TContent = {
       ],
     },
     {
+      label: 'AI & nástroje',
+      skills: [
+        { label: 'Claude Code' },
+        { label: 'MCP' },
+        { label: 'Agentní workflow' },
+        { label: 'Prompt engineering' },
+      ],
+    },
+    {
       label: 'Backend & data',
       skills: [
         { label: 'REST' },
@@ -118,6 +127,7 @@ export const cs: TContent = {
           to: 'present',
           bullets: [
             'Vývoj platformy pro employee experience a people analytics ve Vue 3 + TypeScript',
+            'Zavádím vývoj s pomocí AI — agentní workflow a LLM nástroje zapojené do každodenní práce týmu',
             'Utvářím komponentové vzory, kvalitu kódu a DX napříč frontendem',
             'Architektonická rozhodnutí, code review, spolupráce napříč týmy',
           ],
@@ -204,6 +214,17 @@ export const cs: TContent = {
       ],
     },
   ],
-  // SSŠVT entry is added in phase 4 once the study years are known
-  education: [],
+  education: [
+    {
+      school: 'SSŠVT — Soukromá střední škola výpočetní techniky, Praha',
+      field: 'Informační technologie · maturita',
+      from: '2006-09',
+      to: '2010-06',
+      bullets: [
+        'Široký IT základ ještě z doby před rozdělením oboru na specializace',
+        'Správa sítí a serverů: Windows a Linux, DNS, DHCP, routing, firewally',
+        'Programování, relační databáze, tvorba webu a počítačová grafika',
+      ],
+    },
+  ],
 }

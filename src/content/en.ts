@@ -15,7 +15,7 @@ export const en: TContent = {
     availability: 'Open to interesting projects',
     yearsInIt: (years) => `${years}+ yrs in IT`,
     summary: (years) =>
-      `Frontend developer specializing in Vue and TypeScript, with ${years}+ years in IT — focused on building applications end-to-end, from idea to production. I’m naturally curious, always learning and refining my craft. I enjoy tinkering with IoT and smart-home projects, and outside the screen you’ll find me doing sports, traveling, or riding my motorbike.`,
+      `Frontend developer specializing in Vue and TypeScript, with ${years}+ years in IT — focused on building applications end-to-end, from idea to production. Lately I focus on AI-assisted development — designing agentic workflows that make the whole team faster. I’m naturally curious, always learning and refining my craft. I enjoy tinkering with IoT and smart-home projects, and outside the screen you’ll find me doing sports, traveling, or riding my motorbike.`,
   },
   headings: {
     about: 'About',
@@ -78,6 +78,15 @@ export const en: TContent = {
       ],
     },
     {
+      label: 'AI & Tooling',
+      skills: [
+        { label: 'Claude Code' },
+        { label: 'MCP' },
+        { label: 'Agentic workflows' },
+        { label: 'Prompt engineering' },
+      ],
+    },
+    {
       label: 'Backend & Data',
       skills: [
         { label: 'REST' },
@@ -119,6 +128,7 @@ export const en: TContent = {
           to: 'present',
           bullets: [
             'Building employee-experience and people-analytics platform in Vue 3 + TypeScript',
+            'Driving AI-assisted development — agentic workflows and LLM tooling woven into the team’s everyday process',
             'Shaping component patterns, code quality and DX across the frontend',
             'Architecture decisions, code reviews, cross-team collaboration',
           ],
@@ -205,6 +215,17 @@ export const en: TContent = {
       ],
     },
   ],
-  // SSŠVT entry is added in phase 4 once the study years are known
-  education: [],
+  education: [
+    {
+      school: 'SSŠVT — Private Secondary School of Computer Technology, Prague',
+      field: 'Information Technology · school-leaving exam (maturita)',
+      from: '2006-09',
+      to: '2010-06',
+      bullets: [
+        'Broad IT curriculum from before the field was split into specializations',
+        'Network and server administration: Windows and Linux, DNS, DHCP, routing, firewalls',
+        'Programming, relational databases, web development and computer graphics',
+      ],
+    },
+  ],
 }

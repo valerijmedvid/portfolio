@@ -1,5 +1,7 @@
 <template>
-  <div class="mb-4 print:mb-2 print:border-b print:border-neutral-200 print:pb-1">
+  <div
+    class="mb-4 print:mb-1.5 print:break-after-avoid print:border-b print:border-neutral-200 print:pb-0.5"
+  >
     <!-- Decorative shell prompt; screen readers and print get only the heading below -->
     <p
       aria-hidden="true"

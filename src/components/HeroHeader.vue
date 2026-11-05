@@ -1,5 +1,5 @@
 <template>
-  <header class="mb-12 print:mb-4 print:border-b print:border-neutral-300 print:pb-4">
+  <header class="mb-12 print:mb-3 print:border-b print:border-neutral-300 print:pb-3">
     <p aria-hidden="true" class="mb-5 font-mono text-xs text-neutral-500 print:hidden">
       <span class="text-accent">~ $&nbsp;</span>whoami
     </p>
@@ -11,7 +11,7 @@
 
       <div class="min-w-0">
         <h1
-          class="text-3xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-50 print:text-[22pt] print:leading-none print:text-black"
+          class="text-3xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-50 print:text-[20pt] print:leading-none print:text-black"
         >
           {{ contact.name }}
         </h1>
