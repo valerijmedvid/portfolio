@@ -8,13 +8,13 @@
     :aria-label="props.ariaLabel || props.label"
     :class="[
       props.isDark
-        ? 'bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100'
-        : 'bg-white text-neutral-900 hover:bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800',
-      props.label ? 'px-3 py-2' : 'p-2',
+        ? 'border-accent bg-accent text-accent-contrast hover:opacity-90'
+        : 'border-black/10 bg-white/60 text-neutral-800 hover:border-accent hover:text-accent dark:border-white/10 dark:bg-white/5 dark:text-neutral-200',
+      props.label ? 'px-2.5 py-1.5' : 'p-1.5',
     ]"
-    class="inline-flex items-center gap-2 rounded-xl border border-black/10 dark:border-white/10 text-sm shadow-sm transition-colors duration-200 cursor-pointer hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/40 dark:focus-visible:ring-white/40"
+    class="inline-flex items-center gap-1.5 rounded-md border font-mono text-xs transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
   >
-    <UiIcon v-if="props.icon" :name="props.icon" />
+    <UiIcon v-if="props.icon" :name="props.icon" :size="14" />
     <span v-if="props.label">{{ props.label }}</span>
   </component>
 </template>

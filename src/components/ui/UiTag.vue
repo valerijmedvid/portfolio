@@ -1,23 +1,12 @@
 <template>
   <span
-    class="group inline-flex items-center gap-0.5 px-1 py-0.5 text-xs cursor-pointer transition-colors duration-200"
+    class="inline-flex items-center rounded border border-black/5 bg-black/[0.03] px-1.5 py-0.5 font-mono text-xs text-neutral-700 transition-colors duration-200 hover:border-accent/40 hover:text-accent dark:border-white/10 dark:bg-white/5 dark:text-neutral-300 print:border-0 print:bg-transparent print:p-0 print:pr-2 print:font-sans print:text-black"
   >
-    <UiIcon
-      name="hash"
-      size="11px"
-      class="opacity-40 group-hover:opacity-70 transition-opacity duration-200"
-    />
-    <span
-      class="text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-neutral-100 transition-colors duration-200"
-    >
-      {{ props.label }}
-    </span>
+    {{ props.label }}
   </span>
 </template>
 
 <script setup lang="ts">
-import UiIcon from './UiIcon.vue'
-
 const props = defineProps<{
   label: string
 }>()

@@ -31,14 +31,18 @@ src/
     index.ts                    `Locale` type + `contentByLocale` map
     contact.ts                  name, GitHub, LinkedIn, email parts (language-independent)
   components/
-    HeroHeader.vue              photo, name, meta line, print-only contacts
-    HeaderActions.vue           dark-mode toggle, contact links, Export-PDF (window.print) button
+    TerminalWindow.vue          macOS-style terminal window chrome; `#actions` slot in the title bar
+    HeaderActions.vue           title-bar buttons: dark-mode toggle, CZ/EN switch, Export-PDF (window.print)
+    HeroHeader.vue              `whoami` block: photo, name, meta, contact links (+ print-only contact lines)
     AboutSection.vue            summary paragraph
-    SkillList.vue               renders grouped skill tags
+    SkillList.vue               grouped skills rendered as an `ls skills/` listing
     TimelineSection.vue         titled timeline; used for experience and (mapped) education
-    ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiTimelineItem)
+    ContactSection.vue          closing CTA with email (screen only)
+    AccentSwitcher.vue          TEMPORARY dev-only accent colour picker — remove once a colour is chosen
+    ui/                         pure presentational primitives (UiButton, UiIcon, UiTag, UiSectionHeading, UiTimelineItem)
   composables/
     useTheme.ts                 dark-mode state (module-level singleton, see below)
+    useEmail.ts                 email address/href assembled after mount (anti-scraper)
     useLocale.ts                cs/en state + active `content` (same singleton pattern; `locale` in localStorage, default from navigator.language, sets `<html lang>`)
   utils/
     period.ts                   `YearMonth` type + date-range formatting for the timeline
@@ -80,5 +84,8 @@ ESLint enforces (see `eslint.config.js`):
 Prettier: no semicolons, single quotes, trailing commas, 100-col width, LF line endings.
 
 ## Styling
+
+Visual concept: developer terminal. Each section starts with a decorative shell prompt (`UiSectionHeading`, `aria-hidden`, hidden in print) followed by a real `<h2>`. One accent colour, exposed as Tailwind `accent` / `accent-contrast` via CSS variables in `src/style.css`. Monospace (`font-mono`, JetBrains Mono) is screen-only flavour — print switches back to `font-sans` so the PDF stays a classic CV.
+
 
 Tailwind v4 — configured via `@tailwindcss/postcss` and the `@theme` block in `src/style.css`. There is a `tailwind.config.js` but core theme tokens (e.g. `--font-sans: 'Work Sans'`) live in CSS, not JS. Dark-mode classes (`dark:*`) appear throughout and are driven by the `.dark` class on `<html>` (see Dark mode above).

@@ -1,53 +1,70 @@
 <template>
-  <!-- Hero section -->
-  <header
-    class="flex flex-col items-center gap-4 px-6 pt-8 pb-6 md:flex-row md:items-center md:justify-between print:px-0 print:pt-0 print:pb-4 print:flex-row print:items-center"
-  >
+  <header class="mb-12 print:mb-4">
+    <p aria-hidden="true" class="mb-5 font-mono text-xs text-neutral-500 print:hidden">
+      <span class="text-accent">~ $&nbsp;</span>whoami
+    </p>
+
     <div
-      class="flex flex-col items-center gap-4 md:flex-row md:items-center md:text-left print:flex-row print:items-center print:gap-4"
+      class="flex flex-col items-start gap-6 sm:flex-row sm:items-center print:flex-row print:gap-4"
     >
-      <div
-        class="size-28 shrink-0 overflow-hidden rounded-full ring-1 ring-black/5 print:size-20 print:ring-0"
-      >
-        <img :src="ProfilePhoto" :alt="contact.name" class="h-full w-full object-cover" />
+      <!-- Photo with offset accent frame -->
+      <div class="relative shrink-0">
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 translate-x-2 translate-y-2 rounded-2xl border-2 border-accent print:hidden"
+        />
+        <img
+          :src="ProfilePhoto"
+          :alt="contact.name"
+          class="relative size-28 rounded-2xl bg-neutral-100 object-cover ring-1 ring-black/10 sm:size-32 dark:bg-neutral-800 dark:ring-white/10 print:size-20 print:rounded-full print:ring-0"
+        />
       </div>
 
-      <div class="text-center md:text-left print:text-left">
-        <h1 class="text-2xl font-bold leading-tight tracking-tight print:text-xl">
+      <div class="min-w-0">
+        <h1
+          class="text-3xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-4xl dark:text-neutral-50 print:text-xl print:text-black"
+        >
           {{ contact.name }}
         </h1>
-        <p class="text-sm text-neutral-600 dark:text-neutral-400 print:text-neutral-700">
-          {{ props.profile.role }}
+        <p class="mt-1 font-mono text-sm text-accent print:font-sans print:text-neutral-700">
+          {{ props.profile.role
+          }}<span
+            aria-hidden="true"
+            class="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-accent motion-safe:animate-blink print:hidden"
+          />
         </p>
 
-        <div
-          class="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-neutral-600 dark:text-neutral-400 md:justify-start print:justify-start print:text-neutral-700"
+        <!-- Meta as key: value pairs -->
+        <dl
+          class="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs print:font-sans text-neutral-600 dark:text-neutral-400 print:text-neutral-700"
         >
-          <span class="inline-flex items-center gap-1">
-            <UiIcon name="mappin" :size="12" />
-            {{ props.profile.location }}
-          </span>
+          <div
+            v-for="item in metaItems"
+            :key="item.icon"
+            :class="item.class"
+            class="inline-flex items-center gap-1.5"
+          >
+            <dt class="inline-flex">
+              <UiIcon :name="item.icon" :size="12" class="text-accent print:text-neutral-700" />
+            </dt>
+            <dd>{{ item.value }}</dd>
+          </div>
+        </dl>
 
-          <span class="inline-flex items-center gap-1">
-            <UiIcon name="briefcase" :size="12" />
-            {{ props.profile.yearsInIt(props.yearsInIt) }}
-          </span>
-
-          <span class="inline-flex items-center gap-1">
-            <UiIcon name="languages" :size="12" />
-            {{ props.profile.languages }}
-          </span>
-
-          <span class="inline-flex items-center gap-1 print:hidden">
-            <UiIcon name="calendar" :size="12" />
-            {{ props.profile.availability }}
-          </span>
+        <!-- Contact links (screen) -->
+        <div class="mt-4 flex flex-wrap gap-2 print:hidden">
+          <UiButton
+            v-if="email.href.value"
+            :label="props.actions.email"
+            icon="mail"
+            :href="email.href.value"
+          />
+          <UiButton label="GitHub" icon="github" :href="contact.github.href" />
+          <UiButton label="LinkedIn" icon="linkedin" :href="contact.linkedin.href" />
         </div>
 
-        <!-- Print-only contact lines (replaces the buttons that are hidden in print) -->
-        <div
-          class="mt-2 hidden flex-col gap-0.5 text-xs text-neutral-700 print:flex print:text-left"
-        >
+        <!-- Contact lines (print replaces the buttons) -->
+        <div class="mt-2 hidden flex-col gap-0.5 text-xs text-neutral-700 print:flex">
           <span class="inline-flex items-center gap-1.5">
             <UiIcon name="mail" :size="11" />
             {{ contact.email.user }}&#64;{{ contact.email.domain }}
@@ -63,16 +80,15 @@
         </div>
       </div>
     </div>
-
-    <HeaderActions :actions="props.actions" :email-href="emailHref" />
   </header>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import ProfilePhoto from '/src/assets/vili.webp'
-import HeaderActions from './HeaderActions.vue'
+import UiButton from './ui/UiButton.vue'
 import UiIcon from './ui/UiIcon.vue'
+import { useEmail } from '@/composables/useEmail'
 import { contact } from '@/content/contact'
 import type { TContent } from '@/content/types'
 
@@ -82,9 +98,12 @@ const props = defineProps<{
   yearsInIt: number
 }>()
 
-const emailHref = ref('')
+const email = useEmail()
 
-onMounted(() => {
-  emailHref.value = `mailto:${contact.email.user}@${contact.email.domain}`
-})
+const metaItems = computed((): { icon: string; value: string; class?: string }[] => [
+  { icon: 'mappin', value: props.profile.location },
+  { icon: 'briefcase', value: props.profile.yearsInIt(props.yearsInIt) },
+  { icon: 'languages', value: props.profile.languages },
+  { icon: 'calendar', value: props.profile.availability, class: 'print:hidden' },
+])
 </script>

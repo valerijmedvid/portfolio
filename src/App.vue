@@ -1,22 +1,33 @@
 <template>
   <main
-    class="min-h-screen bg-gradient-to-b from-neutral-50 to-white text-neutral-900 dark:from-neutral-950 dark:to-neutral-900 dark:text-neutral-100 print:bg-white print:text-black"
+    class="relative min-h-screen bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 print:bg-white print:text-black"
   >
-    <div class="mx-auto max-w-5xl px-6 py-10 print:p-0 print:max-w-none">
-      <section
-        class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-neutral-950/60 backdrop-blur shadow-sm print:bg-white print:shadow-none print:border-0 print:rounded-none print:backdrop-blur-none"
-      >
+    <div
+      aria-hidden="true"
+      class="bg-dot-grid pointer-events-none absolute inset-0 text-neutral-900 dark:text-white print:hidden"
+    />
+
+    <div class="relative mx-auto max-w-4xl px-3 py-6 sm:px-6 sm:py-14 print:p-0 print:max-w-none">
+      <TerminalWindow :title="`${terminalUser}@portfolio: ~`">
+        <template #actions>
+          <HeaderActions :actions="content.actions" />
+        </template>
+
         <HeroHeader
           :profile="content.profile"
           :actions="content.actions"
           :years-in-it="yearsInIt"
         />
 
-        <AboutSection :summary="content.profile.summary(yearsInIt)" />
+        <AboutSection
+          :title="content.headings.about"
+          :summary="content.profile.summary(yearsInIt)"
+        />
 
         <SkillList :title="content.headings.skills" :skill-groups="content.skillGroups" />
 
         <TimelineSection
+          command="git log --experience"
           :title="content.headings.experience"
           :items="content.experience"
           :locale="locale"
@@ -24,21 +35,30 @@
 
         <TimelineSection
           v-if="educationItems.length"
+          command="cat education.md"
           :title="content.headings.education"
           :items="educationItems"
           :locale="locale"
         />
-      </section>
+
+        <ContactSection :title="content.headings.contact" :cta="content.contactCta" />
+      </TerminalWindow>
     </div>
+
+    <AccentSwitcher v-if="isDev" />
   </main>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import TerminalWindow from './components/TerminalWindow.vue'
+import HeaderActions from './components/HeaderActions.vue'
 import HeroHeader from './components/HeroHeader.vue'
 import AboutSection from './components/AboutSection.vue'
 import SkillList from './components/SkillList.vue'
 import TimelineSection from './components/TimelineSection.vue'
+import ContactSection from './components/ContactSection.vue'
+import AccentSwitcher from './components/AccentSwitcher.vue'
 import { useTheme } from './composables/useTheme'
 import { useLocale } from './composables/useLocale'
 import type { TExperience } from './content/types'
@@ -46,6 +66,9 @@ import { earliest, yearsSince } from './utils/period'
 
 useTheme()
 const { locale, content } = useLocale()
+
+const isDev = import.meta.env.DEV
+const terminalUser = 'valerij'
 
 const yearsInIt = computed((): number =>
   yearsSince(earliest(content.value.experience.flatMap((e) => e.roles.map((r) => r.from)))),

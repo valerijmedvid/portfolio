@@ -11,10 +11,13 @@ export const cs: TContent = {
       `Frontend developer se specializací na Vue a TypeScript a s více než ${years} lety v IT — zaměřuji se na vývoj aplikací od nápadu až do produkce. Jsem od přírody zvědavý, pořád se učím a zdokonaluji své řemeslo. Rád si hraju s IoT a chytrou domácností a mimo obrazovku mě najdete u sportu, na cestách nebo na motorce.`,
   },
   headings: {
+    about: 'O mně',
     skills: 'Buzzwordy, které fakt umím',
     experience: 'Pracovní zkušenosti',
     education: 'Vzdělání',
+    contact: 'Kontakt',
   },
+  contactCta: 'Máte zajímavý projekt? Pojďme spolu něco postavit.',
   actions: {
     email: 'E-mail',
     exportPdf: 'Stáhnout PDF',

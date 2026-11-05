@@ -11,10 +11,13 @@ export const en: TContent = {
       `Frontend developer specializing in Vue and TypeScript, with ${years}+ years in IT — focused on building applications end-to-end, from idea to production. I’m naturally curious, always learning and refining my craft. I enjoy tinkering with IoT and smart-home projects, and outside the screen you’ll find me doing sports, traveling, or riding my motorbike.`,
   },
   headings: {
+    about: 'About',
     skills: 'Fancy words I can actually use',
     experience: 'Experience',
     education: 'Education',
+    contact: 'Contact',
   },
+  contactCta: "Got an interesting project? Let's build something together.",
   actions: {
     email: 'Email',
     exportPdf: 'Export PDF',

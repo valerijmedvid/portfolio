@@ -1,9 +1,9 @@
 <template>
-  <section class="px-6 pb-6 print:px-0 print:pb-0">
-    <h3 class="mb-3 text-base font-semibold tracking-tight">{{ props.title }}</h3>
+  <section class="mb-12 print:mb-3">
+    <UiSectionHeading :command="props.command" :title="props.title" />
 
     <div
-      class="border-l border-dashed border-neutral-300 dark:border-neutral-700 pl-4 print:border-neutral-400"
+      class="ml-1.5 border-l-2 border-neutral-200 pl-5 dark:border-neutral-800 print:ml-1 print:border-l print:border-neutral-300 print:pl-4"
     >
       <UiTimelineItem
         v-for="(item, index) in props.items"
@@ -17,11 +17,13 @@
 </template>
 
 <script setup lang="ts">
+import UiSectionHeading from './ui/UiSectionHeading.vue'
 import UiTimelineItem from './ui/UiTimelineItem.vue'
 import type { Locale } from '@/content'
 import type { TExperience } from '@/content/types'
 
 const props = defineProps<{
+  command: string
   title: string
   items: TExperience[]
   locale: Locale

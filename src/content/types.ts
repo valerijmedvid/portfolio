@@ -41,10 +41,13 @@ export type TContent = {
     summary: (years: number) => string
   }
   headings: {
+    about: string
     skills: string
     experience: string
     education: string
+    contact: string
   }
+  contactCta: string
   actions: {
     email: string
     exportPdf: string

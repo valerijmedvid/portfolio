@@ -1,15 +1,15 @@
 <template>
-  <!-- Skills section -->
-  <div class="px-6 pb-6 print:px-0 print:pb-3">
-    <h3 class="mb-2 text-base font-semibold tracking-tight">{{ props.title }}</h3>
-    <dl class="grid gap-x-6 gap-y-2 sm:grid-cols-2 print:grid-cols-2 print:gap-y-1">
+  <section class="mb-12 print:mb-3">
+    <UiSectionHeading command="ls skills/" :title="props.title" />
+    <dl class="grid gap-x-8 gap-y-4 sm:grid-cols-2 print:grid-cols-2 print:gap-y-1">
       <div v-for="(group, groupIndex) in props.skillGroups" :key="group.label">
         <dt
-          class="text-xs font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-400 print:text-neutral-700"
+          class="mb-1.5 font-mono text-xs font-bold text-accent print:mb-0.5 print:font-sans print:font-semibold print:text-neutral-700"
         >
-          {{ group.label }}
+          <span class="print:hidden">{{ toDirName(group.label) }}/</span>
+          <span class="hidden print:inline">{{ group.label }}</span>
         </dt>
-        <dd class="flex flex-wrap gap-y-0.5">
+        <dd class="flex flex-wrap gap-1.5 print:gap-0">
           <UiTag
             v-for="(skill, index) in group.skills"
             :key="skill.label"
@@ -21,10 +21,11 @@
         </dd>
       </div>
     </dl>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
+import UiSectionHeading from './ui/UiSectionHeading.vue'
 import UiTag from './ui/UiTag.vue'
 import type { TSkillGroup } from '@/content/types'
 
@@ -32,4 +33,11 @@ const props = defineProps<{
   title: string
   skillGroups: TSkillGroup[]
 }>()
+
+// "Backend & data" -> "backend-data", shown like a directory listing
+const toDirName = (label: string): string =>
+  label
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-|-$/g, '')
 </script>
