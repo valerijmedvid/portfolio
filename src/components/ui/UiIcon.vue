@@ -1,5 +1,5 @@
 <template>
-  <Component :is="iconComponent" :size="iconSize" :stroke-width="props.strokeWidth" />
+  <Component :is="iconComponent" :size="iconSize" stroke-width="1.75" />
 </template>
 
 <script setup lang="ts">
@@ -16,20 +16,15 @@ import {
   Moon,
   Mail,
   Languages,
-  X,
-  Minus,
-  Maximize2,
 } from 'lucide-vue-next'
 
 const props = withDefaults(
   defineProps<{
     name: string
     size?: number | string
-    strokeWidth?: number
   }>(),
   {
     size: 16,
-    strokeWidth: 1.75,
   },
 )
 
@@ -44,9 +39,6 @@ const iconMap: Record<string, Component> = {
   moon: Moon,
   mail: Mail,
   languages: Languages,
-  x: X,
-  minus: Minus,
-  maximize: Maximize2,
 }
 
 const iconComponent = computed((): Component => {

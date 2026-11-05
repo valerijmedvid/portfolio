@@ -8,19 +8,33 @@
     >
       <!-- macOS traffic lights: decorative, glyphs appear on hover like the real ones -->
       <div aria-hidden="true" class="group flex shrink-0 gap-2">
-        <span
-          v-for="light in trafficLights"
-          :key="light.icon"
-          :style="{ backgroundColor: light.color }"
-          class="flex size-3 items-center justify-center rounded-full ring-1 ring-black/10 ring-inset"
-        >
-          <UiIcon
-            :name="light.icon"
-            :size="8"
-            :stroke-width="3"
-            class="text-black/60 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+        <svg v-for="light in trafficLights" :key="light.name" viewBox="0 0 12 12" class="size-3">
+          <circle
+            cx="6"
+            cy="6"
+            r="5.75"
+            :fill="light.fill"
+            :stroke="light.border"
+            stroke-width="0.5"
           />
-        </span>
+          <g class="opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+            <path
+              v-if="light.name === 'close'"
+              d="M3.9 3.9 8.1 8.1M8.1 3.9 3.9 8.1"
+              :stroke="light.glyph"
+              stroke-width="1.1"
+              stroke-linecap="round"
+            />
+            <path
+              v-else-if="light.name === 'minimize'"
+              d="M3.3 6h5.4"
+              :stroke="light.glyph"
+              stroke-width="1.2"
+              stroke-linecap="round"
+            />
+            <path v-else d="M3.6 3.6h4L3.6 7.6zM8.4 8.4h-4l4-4z" :fill="light.glyph" />
+          </g>
+        </svg>
       </div>
       <p
         aria-hidden="true"
@@ -40,15 +54,14 @@
 </template>
 
 <script setup lang="ts">
-import UiIcon from './ui/UiIcon.vue'
-
 const props = defineProps<{
   title: string
 }>()
 
+// Colours sampled from macOS: fill, darker rim, glyph
 const trafficLights = [
-  { color: '#ff5f57', icon: 'x' },
-  { color: '#febc2e', icon: 'minus' },
-  { color: '#28c840', icon: 'maximize' },
+  { name: 'close', fill: '#ff5f57', border: '#e0443e', glyph: '#4d0000' },
+  { name: 'minimize', fill: '#febc2e', border: '#dea123', glyph: '#995700' },
+  { name: 'maximize', fill: '#28c840', border: '#1aab29', glyph: '#006500' },
 ]
 </script>
