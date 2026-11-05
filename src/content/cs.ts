@@ -32,7 +32,7 @@ export const cs: TContent = {
     switchToLight: 'Přepnout na světlý režim',
     switchToDark: 'Přepnout na tmavý režim',
     otherLanguage: 'EN',
-    switchLanguage: 'Switch to English',
+    switchLanguage: 'EN · Switch to English',
   },
   window: {
     reload: 'Obnovit stránku',

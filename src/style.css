@@ -3,8 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Work Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'Work Sans Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   /* Accent is resolved at runtime from html[data-accent] — see the block below */
   --color-accent: var(--accent);
@@ -49,9 +49,9 @@
   }
 }
 
-/* Accent colour (emerald) — light / dark */
+/* Accent colour (emerald) — light / dark. Light uses emerald-700 for WCAG AA contrast on white */
 :root {
-  --accent: #059669;
+  --accent: #047857;
   --accent-contrast: #fff;
 }
 :root.dark {

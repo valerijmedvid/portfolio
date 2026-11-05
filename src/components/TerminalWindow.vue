@@ -8,14 +8,15 @@
       class="flex items-center gap-3 border-b border-black/10 bg-neutral-100/80 px-4 py-2.5 dark:border-white/10 dark:bg-neutral-900/80 print:hidden"
     >
       <!-- macOS traffic lights; glyphs appear on hover like the real ones -->
-      <div class="group flex shrink-0 gap-2">
+      <!-- Each button is a 24px touch target around a 12px dot (WCAG 2.5.8) -->
+      <div class="group -mx-1.5 flex shrink-0">
         <button
           v-for="light in trafficLights"
           :key="light.name"
           type="button"
           :aria-label="props.labels[light.name]"
           :title="props.labels[light.name]"
-          class="cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+          class="cursor-pointer rounded-full p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
           @click="onLight(light.name)"
         >
           <svg viewBox="0 0 12 12" class="size-3" aria-hidden="true">
